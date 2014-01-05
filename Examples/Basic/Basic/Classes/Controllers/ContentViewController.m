@@ -76,7 +76,7 @@
     }
     else
     {
-        [self.sidebarController presentLeftMenuViewController];
+        [self.sidebarController presentLeftMenuViewControllerWithStyle:SidebarTransitionStyleReveal];
     }
     
     self.menuIsShowing ^= YES;
@@ -90,7 +90,7 @@
     }
     else
     {
-        [self.sidebarController presentRightMenuViewController];
+        [self.sidebarController presentRightMenuViewControllerWithStyle:SidebarTransitionStyleReveal];
     }
     
     self.menuIsShowing ^= YES;
