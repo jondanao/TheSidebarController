@@ -1,5 +1,5 @@
 // TheSidebarController.m
-// TheSideBarController
+// TheSidebarController
 //
 // Copyright (c) 2013 Jon Danao (danao.org | jondanao)
 //
@@ -24,22 +24,18 @@
 
 #import "TheSidebarController.h"
 
-
 static const CGFloat kAnimationDuration = 0.3f;
-static const CGFloat kAnimationDelay = 0.0f;
-static const CGFloat kVisibleOpening = 240.0f;
-
-
-typedef enum
-{
-    LeftSide,
-    RightSide,
-} Side;
+static const CGFloat kVisibleWidth = 260.0f;
 
 
 @interface TheSidebarController()
 
-- (void)showMenuViewControllerFromSide:(Side)side withStyle:(MenuTransitionStyle)style;
+@property (assign, nonatomic) SidebarTransitionStyle selectedTransitionStyle;
+@property (assign, nonatomic) Side selectedSide;
+@property (strong, nonatomic) UIView *selectedMenuView;
+@property (strong, nonatomic) NSArray *sidebarAnimations;
+
+- (void)showMenuViewControllerFromSide:(Side)side withTransitionStyle:(SidebarTransitionStyle)transitionStyle;
 - (void)hideMenuViewController;
 
 @end
@@ -74,8 +70,8 @@ typedef enum
         _rightMenuViewController = rightMenuViewController;
         
         self.animationDuration = kAnimationDuration;
-        self.animationDelay = kAnimationDelay;
-        self.visibleOpening = kVisibleOpening;
+        self.visibleWidth = kVisibleWidth;
+        self.sidebarAnimations = @[SIDEBAR_ANIMATIONS];
     }
     
     return self;
@@ -88,7 +84,6 @@ typedef enum
     NSAssert(self.contentViewController != nil, @"contentViewController was not set");
     
     [super viewDidLoad];
-    
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
     if(self.leftMenuViewController)
@@ -140,87 +135,77 @@ typedef enum
 
 - (void)presentLeftMenuViewController
 {
-    NSAssert(self.leftMenuViewController != nil, @"leftMenuViewController was not set");
-    [self showMenuViewControllerFromSide:LeftSide withStyle:MenuTransitionStyleReveal];
+    [self presentLeftMenuViewControllerWithStyle:SidebarTransitionStyleReveal];
 }
 
-- (void)presentLeftMenuViewControllerWithStyle:(MenuTransitionStyle)menuTransitionStyle
+- (void)presentLeftMenuViewControllerWithStyle:(SidebarTransitionStyle)transitionStyle
 {
     NSAssert(self.leftMenuViewController != nil, @"leftMenuViewController was not set");
-    [self showMenuViewControllerFromSide:LeftSide withStyle:menuTransitionStyle];
+    [self showMenuViewControllerFromSide:LeftSide withTransitionStyle:transitionStyle];
 }
 
 - (void)presentRightMenuViewController
 {
-    NSAssert(self.rightMenuViewController != nil, @"rightMenuViewController was not set");
-    [self showMenuViewControllerFromSide:RightSide withStyle:MenuTransitionStyleReveal];
+    [self presentRightMenuViewControllerWithStyle:SidebarTransitionStyleReveal];
 }
 
-- (void)presentRightMenuViewControllerWithStyle:(MenuTransitionStyle)menuTransitionStyle
+ - (void)presentRightMenuViewControllerWithStyle:(SidebarTransitionStyle)transitionStyle
 {
     NSAssert(self.rightMenuViewController != nil, @"rightMenuViewController was not set");
-    [self showMenuViewControllerFromSide:RightSide withStyle:menuTransitionStyle];
+    [self showMenuViewControllerFromSide:RightSide withTransitionStyle:transitionStyle];
 }
 
-- (void)showMenuViewControllerFromSide:(Side)side withStyle:(MenuTransitionStyle)style
+#pragma mark - MenuViewController Private Methods
+- (void)showMenuViewControllerFromSide:(Side)side withTransitionStyle:(SidebarTransitionStyle)transitionStyle
 {
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     
     if(side == LeftSide)
     {
         self.leftMenuViewController.view.hidden = NO;
-        if(self.rightMenuViewController) self.rightMenuViewController.view.hidden = YES;
-        
-        if(style == MenuTransitionStyleReveal)
-        {
-            [UIView animateWithDuration:self.animationDuration
-                                  delay:self.animationDelay
-                                options:UIViewAnimationOptionCurveEaseInOut
-                             animations:^{
-                                 CGRect frame = self.contentViewController.view.frame;
-                                 frame.origin.x = self.visibleOpening;
-                                 self.contentViewController.view.frame = frame;
-                             } completion:^(BOOL finished) {
-                                 [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-                             }];
-        }
+        self.rightMenuViewController.view.hidden = YES;
+        self.selectedMenuView = self.leftMenuViewController.view;
     }
     else if(side == RightSide)
     {
         self.rightMenuViewController.view.hidden = NO;
-        if(self.leftMenuViewController) self.leftMenuViewController.view.hidden = YES;
-        
-        if(style == MenuTransitionStyleReveal)
-        {
-            [UIView animateWithDuration:self.animationDuration
-                                  delay:self.animationDelay
-                                options:UIViewAnimationOptionCurveEaseInOut
-                             animations:^{
-                                 CGRect frame = self.contentViewController.view.frame;
-                                 frame.origin.x = -self.visibleOpening;
-                                 self.contentViewController.view.frame = frame;
-                             } completion:^(BOOL finished) {
-                                 [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-                             }];
-        }
+        self.leftMenuViewController.view.hidden = YES;
+        self.selectedMenuView = self.rightMenuViewController.view;
     }
+    
+    self.selectedSide = side;
+    self.selectedTransitionStyle = transitionStyle;
+    
+    NSString *animationClassName = self.sidebarAnimations[transitionStyle];
+    Class animationClass = NSClassFromString(animationClassName);
+    [animationClass animateContentView:self.contentViewController.view
+                           sidebarView:self.selectedMenuView
+                              fromSide:self.selectedSide
+                          visibleWidth:self.visibleWidth
+                              duration:self.animationDuration
+                            completion:^(BOOL finished) {
+                                [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+                            }
+     ];
 }
 
 - (void)hideMenuViewController
 {
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     
-    [UIView animateWithDuration:self.animationDuration
-                          delay:self.animationDelay
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         CGRect frame = self.contentViewController.view.frame;
-                         frame.origin.x = 0.0;
-                         self.contentViewController.view.frame = frame;
-                     } completion:^(BOOL finished) {
-                         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-                     }];
+    NSString *animationClassName = self.sidebarAnimations[self.selectedTransitionStyle];
+    Class animationClass = NSClassFromString(animationClassName);
+    [animationClass reverseAnimateContentView:self.contentViewController.view
+                                  sidebarView:self.selectedMenuView
+                                     fromSide:self.selectedSide
+                                 visibleWidth:self.visibleWidth
+                                     duration:self.animationDuration
+                                   completion:^(BOOL finished) {
+                                       [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+                                   }
+     ];
 }
+
 
 @end
 

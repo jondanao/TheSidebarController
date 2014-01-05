@@ -21,6 +21,12 @@
 		17059FCF1873000E00E65FCA /* BasicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 17059FCE1873000E00E65FCA /* BasicTests.m */; };
 		17059FED18732A4B00E65FCA /* TheSidebarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17059FEC18732A4B00E65FCA /* TheSidebarController.m */; };
 		175C67E818745A8500848EF0 /* RightMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 175C67E718745A8400848EF0 /* RightMenuViewController.m */; };
+		176BFF2A187734F100803EBB /* background@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 176BFF29187734F100803EBB /* background@2x.jpg */; };
+		176BFF2C187735D300803EBB /* content@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 176BFF2B187735D300803EBB /* content@2x.png */; };
+		176BFF331877AF7C00803EBB /* left-menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 176BFF311877AF7C00803EBB /* left-menu@2x.png */; };
+		176BFF381877B2C200803EBB /* right-menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 176BFF371877B2C200803EBB /* right-menu@2x.png */; };
+		1781F306187956D80061DCC4 /* SidebarAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781F305187956D80061DCC4 /* SidebarAnimation.m */; };
+		1781F309187981B80061DCC4 /* SidebarRevealAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781F308187981B80061DCC4 /* SidebarRevealAnimation.m */; };
 		179383C918733A6500E934AE /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 179383C818733A6500E934AE /* ContentViewController.m */; };
 		179383CC18733B0D00E934AE /* LeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 179383CB18733B0D00E934AE /* LeftMenuViewController.m */; };
 /* End PBXBuildFile section */
@@ -56,6 +62,14 @@
 		17059FEC18732A4B00E65FCA /* TheSidebarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheSidebarController.m; sourceTree = "<group>"; };
 		175C67E618745A8400848EF0 /* RightMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightMenuViewController.h; sourceTree = "<group>"; };
 		175C67E718745A8400848EF0 /* RightMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightMenuViewController.m; sourceTree = "<group>"; };
+		176BFF29187734F100803EBB /* background@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "background@2x.jpg"; sourceTree = "<group>"; };
+		176BFF2B187735D300803EBB /* content@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "content@2x.png"; sourceTree = "<group>"; };
+		176BFF311877AF7C00803EBB /* left-menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left-menu@2x.png"; sourceTree = "<group>"; };
+		176BFF371877B2C200803EBB /* right-menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right-menu@2x.png"; sourceTree = "<group>"; };
+		1781F304187956D80061DCC4 /* SidebarAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarAnimation.h; sourceTree = "<group>"; };
+		1781F305187956D80061DCC4 /* SidebarAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarAnimation.m; sourceTree = "<group>"; };
+		1781F307187981B80061DCC4 /* SidebarRevealAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarRevealAnimation.h; sourceTree = "<group>"; };
+		1781F308187981B80061DCC4 /* SidebarRevealAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarRevealAnimation.m; sourceTree = "<group>"; };
 		179383C718733A6500E934AE /* ContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
 		179383C818733A6500E934AE /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewController.m; sourceTree = "<group>"; };
 		179383CA18733B0D00E934AE /* LeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenuViewController.h; sourceTree = "<group>"; };
@@ -170,6 +184,10 @@
 		17059FDA187301CB00E65FCA /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				176BFF311877AF7C00803EBB /* left-menu@2x.png */,
+				176BFF371877B2C200803EBB /* right-menu@2x.png */,
+				176BFF29187734F100803EBB /* background@2x.jpg */,
+				176BFF2B187735D300803EBB /* content@2x.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -238,11 +256,23 @@
 		17059FEA18732A4B00E65FCA /* TheSidebarController */ = {
 			isa = PBXGroup;
 			children = (
+				176BFF45187852B100803EBB /* Animations */,
 				17059FEB18732A4B00E65FCA /* TheSidebarController.h */,
 				17059FEC18732A4B00E65FCA /* TheSidebarController.m */,
 			);
 			name = TheSidebarController;
 			path = ../../../TheSidebarController;
+			sourceTree = "<group>";
+		};
+		176BFF45187852B100803EBB /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				1781F304187956D80061DCC4 /* SidebarAnimation.h */,
+				1781F305187956D80061DCC4 /* SidebarAnimation.m */,
+				1781F307187981B80061DCC4 /* SidebarRevealAnimation.h */,
+				1781F308187981B80061DCC4 /* SidebarRevealAnimation.m */,
+			);
+			path = Animations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,7 +320,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0500;
-				ORGANIZATIONNAME = "Jon Danao";
+				ORGANIZATIONNAME = "Jon Danao (danao.org | jondanao)";
 				TargetAttributes = {
 					17059FC01873000E00E65FCA = {
 						TestTargetID = 17059FA51873000E00E65FCA;
@@ -321,6 +351,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				17059FB41873000E00E65FCA /* InfoPlist.strings in Resources */,
+				176BFF2A187734F100803EBB /* background@2x.jpg in Resources */,
+				176BFF2C187735D300803EBB /* content@2x.png in Resources */,
+				176BFF331877AF7C00803EBB /* left-menu@2x.png in Resources */,
+				176BFF381877B2C200803EBB /* right-menu@2x.png in Resources */,
 				17059FBC1873000E00E65FCA /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,6 +377,8 @@
 				175C67E818745A8500848EF0 /* RightMenuViewController.m in Sources */,
 				179383C918733A6500E934AE /* ContentViewController.m in Sources */,
 				17059FBA1873000E00E65FCA /* AppDelegate.m in Sources */,
+				1781F306187956D80061DCC4 /* SidebarAnimation.m in Sources */,
+				1781F309187981B80061DCC4 /* SidebarRevealAnimation.m in Sources */,
 				17059FED18732A4B00E65FCA /* TheSidebarController.m in Sources */,
 				179383CC18733B0D00E934AE /* LeftMenuViewController.m in Sources */,
 				17059FB61873000E00E65FCA /* main.m in Sources */,

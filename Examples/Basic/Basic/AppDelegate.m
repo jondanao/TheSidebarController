@@ -23,26 +23,32 @@
 // THE SOFTWARE.
 
 #import "AppDelegate.h"
+#import <QuartzCore/QuartzCore.h>
 #import "TheSidebarController.h"
 #import "ContentViewController.h"
 #import "LeftMenuViewController.h"
 #import "RightMenuViewController.h"
-#import <QuartzCore/QuartzCore.h>
+
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     ContentViewController *contentViewController = [[ContentViewController alloc] init];
-    contentViewController.view.backgroundColor = [UIColor brownColor];
+    contentViewController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"content.png"]];
+    contentViewController.view.layer.shadowColor = [UIColor redColor].CGColor;
+    contentViewController.view.layer.shadowOffset = (CGSize){0.0, 0.0};
+    contentViewController.view.layer.shadowOpacity = 0.8;
+    contentViewController.view.layer.shadowRadius = 10.0;
     
     LeftMenuViewController *leftMenuViewController = [[LeftMenuViewController alloc] init];
-    leftMenuViewController.view.backgroundColor = [UIColor orangeColor];
+    leftMenuViewController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"left-menu.png"]];
     
     RightMenuViewController *rightMenuViewController = [[RightMenuViewController alloc] init];
-    rightMenuViewController.view.backgroundColor = [UIColor greenColor];
+    rightMenuViewController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"right-menu.png"]];
     
     TheSidebarController *sidebarController = [[TheSidebarController alloc] initWithContentViewController:[[UINavigationController alloc] initWithRootViewController:contentViewController] leftMenuViewController:leftMenuViewController rightMenuViewController:rightMenuViewController];
+    sidebarController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.jpg"]];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];

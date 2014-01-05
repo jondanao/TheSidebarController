@@ -23,18 +23,7 @@
 
 
 #import <UIKit/UIKit.h>
-
-typedef NS_ENUM(NSInteger, MenuTransitionStyle)
-{
-    MenuTransitionStyleSlide,
-    MenuTransitionStyleSlide3D,
-    MenuTransitionStyleReveal,
-    MenuTransitionStyleReveal3D,
-    MenuTransitionStylePush,
-    MenuTransitionStylePush3D,
-    MenuTransitionStyleParallax,
-    MenuTransitionStyleScale
-};
+#import "SidebarAnimation.h"
 
 
 @interface TheSidebarController : UIViewController
@@ -44,9 +33,7 @@ typedef NS_ENUM(NSInteger, MenuTransitionStyle)
 @property (strong, nonatomic) UIViewController *rightMenuViewController;
 
 @property (assign, nonatomic) NSTimeInterval animationDuration;
-@property (assign, nonatomic) NSTimeInterval animationDelay;
-@property (assign, nonatomic) CGFloat visibleOpening;
-
+@property (assign, nonatomic) CGFloat visibleWidth;
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController
              leftMenuViewController:(UIViewController *)leftMenuViewController;
@@ -60,9 +47,9 @@ typedef NS_ENUM(NSInteger, MenuTransitionStyle)
 
 - (void)dismissMenuViewController;
 - (void)presentLeftMenuViewController;
-- (void)presentLeftMenuViewControllerWithStyle:(MenuTransitionStyle)menuTransitionStyle;
+- (void)presentLeftMenuViewControllerWithStyle:(SidebarTransitionStyle)transitionStyle;
 - (void)presentRightMenuViewController;
-- (void)presentRightMenuViewControllerWithStyle:(MenuTransitionStyle)menuTransitionStyle;
+- (void)presentRightMenuViewControllerWithStyle:(SidebarTransitionStyle)transitionStyle;
 
 @end
 

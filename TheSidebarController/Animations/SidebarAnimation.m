@@ -1,5 +1,5 @@
-// LeftMenuViewController.m
-// Basic
+// SidebarAnimation.m
+// TheSidebarController
 //
 // Copyright (c) 2014 Jon Danao
 //
@@ -22,23 +22,18 @@
 // THE SOFTWARE.
 
 
-#import "LeftMenuViewController.h"
-#import "TheSidebarController.h"
+#import "SidebarAnimation.h"
 
-@implementation LeftMenuViewController
+@implementation SidebarAnimation
 
-#pragma mark - UIViewController Lifecycle
-- (void)viewDidLoad
++ (void)animateContentView:(UIView *)contentView sidebarView:(UIView *)sidebarView fromSide:(Side)side visibleWidth:(CGFloat)visibleWidth duration:(NSTimeInterval)animationDuration completion:(void (^)(BOOL))completion
 {
-    [super viewDidLoad];
-
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
-    [self.view addGestureRecognizer:tap];
+    
 }
 
-- (void)tapped:(id)sender
++ (void)reverseAnimateContentView:(UIView *)contentView sidebarView:(UIView *)sidebarView fromSide:(Side)side visibleWidth:(CGFloat)visibleWidth duration:(NSTimeInterval)animationDuration completion:(void (^)(BOOL))completion
 {
-    [self.sidebarController dismissMenuViewController];
+    
 }
 
 @end
