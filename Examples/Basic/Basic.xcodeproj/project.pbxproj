@@ -28,6 +28,8 @@
 		1781F309187981B80061DCC4 /* SidebarRevealAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781F308187981B80061DCC4 /* SidebarRevealAnimation.m */; };
 		1781F30C1879AE120061DCC4 /* LeftSidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781F30B1879AE120061DCC4 /* LeftSidebarViewController.m */; };
 		1781F30F1879AE1E0061DCC4 /* RightSidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781F30E1879AE1E0061DCC4 /* RightSidebarViewController.m */; };
+		1781F315187A97610061DCC4 /* SidebarReveal3DAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781F314187A97610061DCC4 /* SidebarReveal3DAnimation.m */; };
+		1781F317187AA97F0061DCC4 /* content2@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1781F316187AA97F0061DCC4 /* content2@2x.jpg */; };
 		179383C918733A6500E934AE /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 179383C818733A6500E934AE /* ContentViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +74,9 @@
 		1781F30B1879AE120061DCC4 /* LeftSidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftSidebarViewController.m; sourceTree = "<group>"; };
 		1781F30D1879AE1E0061DCC4 /* RightSidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightSidebarViewController.h; sourceTree = "<group>"; };
 		1781F30E1879AE1E0061DCC4 /* RightSidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightSidebarViewController.m; sourceTree = "<group>"; };
+		1781F313187A97610061DCC4 /* SidebarReveal3DAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarReveal3DAnimation.h; sourceTree = "<group>"; };
+		1781F314187A97610061DCC4 /* SidebarReveal3DAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarReveal3DAnimation.m; sourceTree = "<group>"; };
+		1781F316187AA97F0061DCC4 /* content2@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "content2@2x.jpg"; sourceTree = "<group>"; };
 		179383C718733A6500E934AE /* ContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
 		179383C818733A6500E934AE /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -188,6 +193,7 @@
 				176BFF371877B2C200803EBB /* right-menu@2x.png */,
 				176BFF29187734F100803EBB /* background@2x.jpg */,
 				176BFF2B187735D300803EBB /* content@2x.png */,
+				1781F316187AA97F0061DCC4 /* content2@2x.jpg */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -271,6 +277,8 @@
 				1781F305187956D80061DCC4 /* SidebarAnimation.m */,
 				1781F307187981B80061DCC4 /* SidebarRevealAnimation.h */,
 				1781F308187981B80061DCC4 /* SidebarRevealAnimation.m */,
+				1781F313187A97610061DCC4 /* SidebarReveal3DAnimation.h */,
+				1781F314187A97610061DCC4 /* SidebarReveal3DAnimation.m */,
 			);
 			path = Animations;
 			sourceTree = "<group>";
@@ -352,6 +360,7 @@
 			files = (
 				17059FB41873000E00E65FCA /* InfoPlist.strings in Resources */,
 				176BFF2A187734F100803EBB /* background@2x.jpg in Resources */,
+				1781F317187AA97F0061DCC4 /* content2@2x.jpg in Resources */,
 				176BFF2C187735D300803EBB /* content@2x.png in Resources */,
 				176BFF331877AF7C00803EBB /* left-menu@2x.png in Resources */,
 				176BFF381877B2C200803EBB /* right-menu@2x.png in Resources */,
@@ -379,6 +388,7 @@
 				17059FBA1873000E00E65FCA /* AppDelegate.m in Sources */,
 				1781F306187956D80061DCC4 /* SidebarAnimation.m in Sources */,
 				1781F309187981B80061DCC4 /* SidebarRevealAnimation.m in Sources */,
+				1781F315187A97610061DCC4 /* SidebarReveal3DAnimation.m in Sources */,
 				17059FED18732A4B00E65FCA /* TheSidebarController.m in Sources */,
 				1781F30F1879AE1E0061DCC4 /* RightSidebarViewController.m in Sources */,
 				17059FB61873000E00E65FCA /* main.m in Sources */,
@@ -505,7 +515,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Basic/Basic-Prefix.pch";
 				INFOPLIST_FILE = "Basic/Basic-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -520,7 +530,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Basic/Basic-Prefix.pch";
 				INFOPLIST_FILE = "Basic/Basic-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;

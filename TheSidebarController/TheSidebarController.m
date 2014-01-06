@@ -32,11 +32,14 @@ static const CGFloat kVisibleWidth = 260.0f;
 
 @property (assign, nonatomic) SidebarTransitionStyle selectedTransitionStyle;
 @property (assign, nonatomic) Side selectedSide;
-@property (strong, nonatomic) UIView *selectedMenuView;
+@property (strong, nonatomic) UIView *selectedSidebarView;
 @property (strong, nonatomic) NSArray *sidebarAnimations;
+@property (strong, nonatomic) UIViewController *contentContainerViewController;
+@property (strong, nonatomic) UIViewController *leftSidebarContainerViewController;
+@property (strong, nonatomic) UIViewController *rightSidebarContainerViewController;
 
 - (void)showSidebarViewControllerFromSide:(Side)side withTransitionStyle:(SidebarTransitionStyle)transitionStyle;
-- (void)hideMenuViewController;
+- (void)hideSidebarViewController;
 
 @end
 
@@ -65,13 +68,17 @@ static const CGFloat kVisibleWidth = 260.0f;
     
     if(self)
     {
+        _contentContainerViewController = [[UIViewController alloc] init];
+        _leftSidebarContainerViewController = [[UIViewController alloc] init];
+        _rightSidebarContainerViewController = [[UIViewController alloc] init];
+        
         _contentViewController = contentViewController;
         _leftSidebarViewController = leftSidebarViewController;
         _rightSidebarViewController = rightSidebarViewController;
         
-        self.animationDuration = kAnimationDuration;
-        self.visibleWidth = kVisibleWidth;
-        self.sidebarAnimations = @[SIDEBAR_ANIMATIONS];
+        _animationDuration = kAnimationDuration;
+        _visibleWidth = kVisibleWidth;
+        _sidebarAnimations = @[SIDEBAR_ANIMATIONS];
     }
     
     return self;
@@ -88,22 +95,42 @@ static const CGFloat kVisibleWidth = 260.0f;
     
     if(self.leftSidebarViewController)
     {
-        [self addChildViewController:self.leftSidebarViewController];
-        [self.view addSubview:self.leftSidebarViewController.view];
-        self.leftSidebarViewController.view.hidden = YES;
-        [self.leftSidebarViewController didMoveToParentViewController:self];
+        // Parent View Controller
+        [self addChildViewController:self.leftSidebarContainerViewController];
+        [self.view addSubview:self.leftSidebarContainerViewController.view];
+        [self.leftSidebarContainerViewController didMoveToParentViewController:self];
+        self.leftSidebarContainerViewController.view.hidden = YES;
+        
+        // Child View Controller
+        [self.leftSidebarContainerViewController addChildViewController:self.leftSidebarViewController];
+        [self.leftSidebarContainerViewController.view addSubview:self.leftSidebarViewController.view];
+        [self.leftSidebarViewController didMoveToParentViewController:self.leftSidebarContainerViewController];
     }
     
     if(self.rightSidebarViewController)
     {
-        [self addChildViewController:self.rightSidebarViewController];
-        [self.view addSubview:self.rightSidebarViewController.view];
-        self.rightSidebarViewController.view.hidden = YES;
-        [self.rightSidebarViewController didMoveToParentViewController:self];
+        // Parent View Controller
+        [self addChildViewController:self.rightSidebarContainerViewController];
+        [self.view addSubview:self.rightSidebarContainerViewController.view];
+        [self.rightSidebarContainerViewController didMoveToParentViewController:self];
+        self.rightSidebarContainerViewController.view.hidden = YES;
+        
+        // Child View Controller
+        [self.rightSidebarContainerViewController addChildViewController:self.rightSidebarViewController];
+        [self.rightSidebarContainerViewController.view addSubview:self.rightSidebarViewController.view];
+        [self.rightSidebarViewController didMoveToParentViewController:self.rightSidebarContainerViewController];
     }
     
-    [self addChildViewController:self.contentViewController];
-    [self.view addSubview:self.contentViewController.view];
+    
+    // Parent View Controller
+    [self addChildViewController:self.contentContainerViewController];
+    [self.view addSubview:self.contentContainerViewController.view];
+    [self.contentContainerViewController didMoveToParentViewController:self];
+    
+    // Child View Controller
+    [self.contentContainerViewController addChildViewController:self.contentViewController];
+    [self.contentContainerViewController.view addSubview:self.contentViewController.view];
+    [self.contentViewController didMoveToParentViewController:self.contentContainerViewController];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -127,10 +154,10 @@ static const CGFloat kVisibleWidth = 260.0f;
 }
 
 
-#pragma mark - MenuViewController Presentation Methods
-- (void)dismissMenuViewController
+#pragma mark - TheSidebarController Presentation Methods
+- (void)dismissSidebarViewController
 {
-    [self hideMenuViewController];
+    [self hideSidebarViewController];
 }
 
 - (void)presentLeftSidebarViewController
@@ -155,22 +182,22 @@ static const CGFloat kVisibleWidth = 260.0f;
     [self showSidebarViewControllerFromSide:RightSide withTransitionStyle:transitionStyle];
 }
 
-#pragma mark - MenuViewController Private Methods
+#pragma mark - SidebarController Private Methods
 - (void)showSidebarViewControllerFromSide:(Side)side withTransitionStyle:(SidebarTransitionStyle)transitionStyle
-{
+{    
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     
     if(side == LeftSide)
     {
-        self.leftSidebarViewController.view.hidden = NO;
-        self.rightSidebarViewController.view.hidden = YES;
-        self.selectedMenuView = self.leftSidebarViewController.view;
+        self.leftSidebarContainerViewController.view.hidden = NO;
+        self.rightSidebarContainerViewController.view.hidden = YES;
+        self.selectedSidebarView = self.leftSidebarContainerViewController.view;
     }
     else if(side == RightSide)
     {
-        self.rightSidebarViewController.view.hidden = NO;
-        self.leftSidebarViewController.view.hidden = YES;
-        self.selectedMenuView = self.rightSidebarViewController.view;
+        self.rightSidebarContainerViewController.view.hidden = NO;
+        self.leftSidebarContainerViewController.view.hidden = YES;
+        self.selectedSidebarView = self.rightSidebarContainerViewController.view;
     }
     
     self.selectedSide = side;
@@ -178,8 +205,8 @@ static const CGFloat kVisibleWidth = 260.0f;
     
     NSString *animationClassName = self.sidebarAnimations[transitionStyle];
     Class animationClass = NSClassFromString(animationClassName);
-    [animationClass animateContentView:self.contentViewController.view
-                           sidebarView:self.selectedMenuView
+    [animationClass animateContentView:self.contentContainerViewController.view
+                           sidebarView:self.selectedSidebarView
                               fromSide:self.selectedSide
                           visibleWidth:self.visibleWidth
                               duration:self.animationDuration
@@ -189,14 +216,14 @@ static const CGFloat kVisibleWidth = 260.0f;
      ];
 }
 
-- (void)hideMenuViewController
+- (void)hideSidebarViewController
 {
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     
     NSString *animationClassName = self.sidebarAnimations[self.selectedTransitionStyle];
     Class animationClass = NSClassFromString(animationClassName);
-    [animationClass reverseAnimateContentView:self.contentViewController.view
-                                  sidebarView:self.selectedMenuView
+    [animationClass reverseAnimateContentView:self.contentContainerViewController.view
+                                  sidebarView:self.selectedSidebarView
                                      fromSide:self.selectedSide
                                  visibleWidth:self.visibleWidth
                                      duration:self.animationDuration
@@ -207,6 +234,35 @@ static const CGFloat kVisibleWidth = 260.0f;
 }
 
 
+#pragma mark - View Controller Setters
+- (void)setContentViewController:(UIViewController *)contentViewController
+{
+    // Old View Controller
+    UIViewController *oldViewController = self.contentViewController;
+    [oldViewController willMoveToParentViewController:nil];
+    [oldViewController.view removeFromSuperview];
+    [oldViewController removeFromParentViewController];
+    
+    // New View Controller
+    UIViewController *newViewController = contentViewController;
+    [self.contentContainerViewController addChildViewController:newViewController];
+    [self.contentContainerViewController.view addSubview:contentViewController.view];
+    [contentViewController didMoveToParentViewController:self.contentContainerViewController];
+    
+    _contentViewController = contentViewController;
+}
+
+- (void)setLeftSidebarViewController:(UIViewController *)leftSidebarViewController
+{
+    NSLog(@"leftSidebarContentViewController");
+}
+
+- (void)setRightSidebarViewController:(UIViewController *)rightSidebarViewController
+{
+    NSLog(@"rightSidebarContentViewController");
+}
+
+
 @end
 
 
@@ -214,15 +270,15 @@ static const CGFloat kVisibleWidth = 260.0f;
 @implementation UIViewController(TheSidebarController)
 
 - (TheSidebarController *)sidebarController
-{    
-    if([self.parentViewController isKindOfClass:[TheSidebarController class]])
-    {
-        return (TheSidebarController *)self.parentViewController;
-    }
-    else if([self.parentViewController isKindOfClass:[UINavigationController class]] &&
-            [self.parentViewController.parentViewController isKindOfClass:[TheSidebarController class]])
+{
+    if([self.parentViewController.parentViewController isKindOfClass:[TheSidebarController class]])
     {
         return (TheSidebarController *)self.parentViewController.parentViewController;
+    }
+    else if([self.parentViewController isKindOfClass:[UINavigationController class]] &&
+            [self.parentViewController.parentViewController.parentViewController isKindOfClass:[TheSidebarController class]])
+    {
+        return (TheSidebarController *)self.parentViewController.parentViewController.parentViewController;
     }
     
     return nil;

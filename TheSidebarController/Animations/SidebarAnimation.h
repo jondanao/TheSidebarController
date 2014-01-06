@@ -1,7 +1,7 @@
 // SidebarAnimation.h
 // TheSidebarController
 // 
-// Copyright (c) 2014 Jon Danao
+// Copyright (c) 2014 Jon Danao (danao.org | jondanao)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal

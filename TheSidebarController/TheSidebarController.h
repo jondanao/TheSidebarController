@@ -45,7 +45,7 @@
           leftSidebarViewController:(UIViewController *)leftSidebarViewController
          rightSidebarViewController:(UIViewController *)rightSidebarViewController;
 
-- (void)dismissMenuViewController;
+- (void)dismissSidebarViewController;
 - (void)presentLeftSidebarViewController;
 - (void)presentLeftSidebarViewControllerWithStyle:(SidebarTransitionStyle)transitionStyle;
 - (void)presentRightSidebarViewController;

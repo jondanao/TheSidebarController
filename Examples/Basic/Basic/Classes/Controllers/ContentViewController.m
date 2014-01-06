@@ -43,7 +43,7 @@
     
     if(self)
     {
-        self.menuIsShowing = NO;
+        _menuIsShowing = NO;
     }
     
     return self;
@@ -72,11 +72,11 @@
 {
     if(self.menuIsShowing)
     {
-        [self.sidebarController dismissMenuViewController];
+        [self.sidebarController dismissSidebarViewController];
     }
     else
     {
-        [self.sidebarController presentLeftSidebarViewControllerWithStyle:SidebarTransitionStyleReveal];
+        [self.sidebarController presentLeftSidebarViewController];
     }
     
     self.menuIsShowing ^= YES;
@@ -86,11 +86,11 @@
 {
     if(self.menuIsShowing)
     {
-        [self.sidebarController dismissMenuViewController];
+        [self.sidebarController dismissSidebarViewController];
     }
     else
     {
-        [self.sidebarController presentRightSidebarViewControllerWithStyle:SidebarTransitionStyleReveal];
+        [self.sidebarController presentLeftSidebarViewController];
     }
     
     self.menuIsShowing ^= YES;

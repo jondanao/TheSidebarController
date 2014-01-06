@@ -23,7 +23,33 @@
 
 
 #import "LeftSidebarViewController.h"
+#import "TheSidebarController.h"
+
+
+@interface LeftSidebarViewController()
+
+- (void)buttonClicked:(id)sender;
+
+@end
+
 
 @implementation LeftSidebarViewController
+
+- (void)viewDidLoad
+{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    button.frame = (CGRect){50, 100, 200, 50};
+    [button setTitle:@"Button" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+}
+
+- (void)buttonClicked:(id)sender
+{
+    UIViewController *viewController = [[UIViewController alloc] init];
+    viewController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"content2.jpg"]];
+    self.sidebarController.contentViewController = viewController;
+    [self.sidebarController dismissSidebarViewController];
+}
 
 @end
