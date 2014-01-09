@@ -6,15 +6,37 @@
 //  Copyright (c) 2014 Jon Danao (danao.org | jondanao). All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "AppDelegate.h"
+#import "TheSidebarController.h"
+#import "CenterViewController.h"
+#import "LeftViewController.h"
+#import "RightViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    CenterViewController *centerViewController = [[CenterViewController alloc] init];    
+    UINavigationController *contentViewController = [[UINavigationController alloc] initWithRootViewController:centerViewController];
+    contentViewController.view.backgroundColor = [UIColor whiteColor];
+    contentViewController.view.layer.shadowColor = [UIColor blackColor].CGColor;
+    contentViewController.view.layer.shadowOffset = (CGSize){0.0, 0.0};
+    contentViewController.view.layer.shadowOpacity = 0.6;
+    contentViewController.view.layer.shadowRadius = 20.0;
+    
+    LeftViewController *leftViewController = [[LeftViewController alloc] init];
+    leftViewController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"left-sidebar"]];
+    
+    RightViewController *rightViewController = [[RightViewController alloc] init];
+    rightViewController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"right-sidebar"]];
+    
+    TheSidebarController *sidebarController = [[TheSidebarController alloc] initWithContentViewController:contentViewController leftSidebarViewController:leftViewController rightSidebarViewController:rightViewController];
+    sidebarController.view.backgroundColor = [UIColor blackColor];// colorWithPatternImage:[UIImage imageNamed:@"bg"]];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    self.window.rootViewController = sidebarController;
     [self.window makeKeyAndVisible];
     return YES;
 }

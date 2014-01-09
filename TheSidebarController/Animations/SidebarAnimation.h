@@ -26,27 +26,26 @@
 
 #define DEG2RAD(degrees) (degrees * M_PI / 180)
 #define SIDEBAR_ANIMATIONS \
-    @"SidebarRevealAnimation", \
-    @"SidebarReveal3DAnimation", \
-    @"SidebarCoverAnimation", \
-    @"SidebarCover3DAnimation", \
-    @"SidebarPushAnimation", \
-    @"SidebarPush3DAnimation", \
-    @"SidebarParallaxAnimation", \
-    @"SidebarScaleAnimation"
+    @"SidebarFacebookAnimation", \
+    @"SidebarAirbnbAnimation", \
+    @"SidebarLuvocracyAnimation", \
+    @"SidebarFeedlyAnimation", \
+    @"SidebarFlipboardAnimation", \
+    @"SidebarWunderlistAnimation", \
+    @"SidebarTaaskyAnimation", \
+    @"SidebarTweetbotAnimation", \
 
-@class SidebarRevealAnimation;
 
 typedef NS_ENUM(NSInteger, SidebarTransitionStyle)
 {
-    SidebarTransitionStyleReveal,
-    SidebarTransitionStyleReveal3D,
-    SidebarTransitionStyleCover,
-    SidebarTransitionStyleCover3D,
-    SidebarTransitionStylePush,
-    SidebarTransitionStylePush3D,
-    SidebarTransitionStyleParallax,
-    SidebarTransitionStyleScale
+    SidebarTransitionStyleFacebook,
+    SidebarTransitionStyleAirbnb,
+    SidebarTransitionStyleLuvocracy,
+    SidebarTransitionStyleFeedly,
+    SidebarTransitionStyleFlipboard,
+    SidebarTransitionStyleWunderlist,
+    SidebarTransitionStyleTaasky,
+    SidebarTransitionStyleTweetbot
 };
 
 typedef NS_ENUM(NSInteger, Side)
@@ -72,5 +71,8 @@ typedef NS_ENUM(NSInteger, Side)
                      visibleWidth:(CGFloat)visibleWidth
                          duration:(NSTimeInterval)animationDuration
                        completion:(void (^)(BOOL finished))completion;
+
++ (void)resetSidebarPosition:(UIView *)sidebarView;
++ (void)resetContentPosition:(UIView *)contentView;
 
 @end

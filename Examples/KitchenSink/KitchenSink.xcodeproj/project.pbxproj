@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1771E70F187D279C009F999A /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1771E70E187D279C009F999A /* CustomCell.m */; };
+		1771E712187DB5F4009F999A /* SidebarFacebookAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1771E711187DB5F4009F999A /* SidebarFacebookAnimation.m */; };
+		1771E715187DBC19009F999A /* SidebarAirbnbAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1771E714187DBC19009F999A /* SidebarAirbnbAnimation.m */; };
+		1771E720187DC617009F999A /* right-sidebar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1771E71E187DC617009F999A /* right-sidebar@2x.png */; };
+		1771E721187DC617009F999A /* left-sidebar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1771E71F187DC617009F999A /* left-sidebar@2x.png */; };
+		1771E724187E3CB6009F999A /* SidebarLuvocracyAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1771E723187E3CB6009F999A /* SidebarLuvocracyAnimation.m */; };
+		1771E727187E3F71009F999A /* SidebarFeedlyAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1771E726187E3F71009F999A /* SidebarFeedlyAnimation.m */; };
+		1771E72A187E7523009F999A /* SidebarFlipboardAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1771E729187E7523009F999A /* SidebarFlipboardAnimation.m */; };
+		1771E733187E835C009F999A /* SidebarWunderlistAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1771E732187E835C009F999A /* SidebarWunderlistAnimation.m */; };
 		1781F325187AE4060061DCC4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1781F324187AE4060061DCC4 /* Foundation.framework */; };
 		1781F327187AE4060061DCC4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1781F326187AE4060061DCC4 /* CoreGraphics.framework */; };
 		1781F329187AE4060061DCC4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1781F328187AE4060061DCC4 /* UIKit.framework */; };
@@ -19,6 +28,12 @@
 		1781F340187AE4060061DCC4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1781F328187AE4060061DCC4 /* UIKit.framework */; };
 		1781F348187AE4060061DCC4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1781F346187AE4060061DCC4 /* InfoPlist.strings */; };
 		1781F34A187AE4060061DCC4 /* KitchenSinkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781F349187AE4060061DCC4 /* KitchenSinkTests.m */; };
+		1781F365187AE76F0061DCC4 /* SidebarAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781F35E187AE76F0061DCC4 /* SidebarAnimation.m */; };
+		1781F368187AE76F0061DCC4 /* TheSidebarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781F364187AE76F0061DCC4 /* TheSidebarController.m */; };
+		1781F373187AEF950061DCC4 /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781F372187AEF950061DCC4 /* LeftViewController.m */; };
+		1781F376187AEFB90061DCC4 /* RightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781F375187AEFB90061DCC4 /* RightViewController.m */; };
+		1781F379187AF01F0061DCC4 /* CenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781F378187AF01F0061DCC4 /* CenterViewController.m */; };
+		17B73610187C6636005912DD /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17B7360F187C6636005912DD /* bg@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +47,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1771E70D187D279C009F999A /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
+		1771E70E187D279C009F999A /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
+		1771E710187DB5F4009F999A /* SidebarFacebookAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarFacebookAnimation.h; sourceTree = "<group>"; };
+		1771E711187DB5F4009F999A /* SidebarFacebookAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarFacebookAnimation.m; sourceTree = "<group>"; };
+		1771E713187DBC19009F999A /* SidebarAirbnbAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarAirbnbAnimation.h; sourceTree = "<group>"; };
+		1771E714187DBC19009F999A /* SidebarAirbnbAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarAirbnbAnimation.m; sourceTree = "<group>"; };
+		1771E71E187DC617009F999A /* right-sidebar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right-sidebar@2x.png"; sourceTree = "<group>"; };
+		1771E71F187DC617009F999A /* left-sidebar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left-sidebar@2x.png"; sourceTree = "<group>"; };
+		1771E722187E3CB6009F999A /* SidebarLuvocracyAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarLuvocracyAnimation.h; sourceTree = "<group>"; };
+		1771E723187E3CB6009F999A /* SidebarLuvocracyAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarLuvocracyAnimation.m; sourceTree = "<group>"; };
+		1771E725187E3F71009F999A /* SidebarFeedlyAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarFeedlyAnimation.h; sourceTree = "<group>"; };
+		1771E726187E3F71009F999A /* SidebarFeedlyAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarFeedlyAnimation.m; sourceTree = "<group>"; };
+		1771E728187E7523009F999A /* SidebarFlipboardAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarFlipboardAnimation.h; sourceTree = "<group>"; };
+		1771E729187E7523009F999A /* SidebarFlipboardAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarFlipboardAnimation.m; sourceTree = "<group>"; };
+		1771E731187E835C009F999A /* SidebarWunderlistAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarWunderlistAnimation.h; sourceTree = "<group>"; };
+		1771E732187E835C009F999A /* SidebarWunderlistAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarWunderlistAnimation.m; sourceTree = "<group>"; };
 		1781F321187AE4060061DCC4 /* KitchenSink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KitchenSink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1781F324187AE4060061DCC4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1781F326187AE4060061DCC4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -48,6 +79,17 @@
 		1781F345187AE4060061DCC4 /* KitchenSinkTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KitchenSinkTests-Info.plist"; sourceTree = "<group>"; };
 		1781F347187AE4060061DCC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1781F349187AE4060061DCC4 /* KitchenSinkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KitchenSinkTests.m; sourceTree = "<group>"; };
+		1781F35D187AE76F0061DCC4 /* SidebarAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarAnimation.h; sourceTree = "<group>"; };
+		1781F35E187AE76F0061DCC4 /* SidebarAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarAnimation.m; sourceTree = "<group>"; };
+		1781F363187AE76F0061DCC4 /* TheSidebarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheSidebarController.h; sourceTree = "<group>"; };
+		1781F364187AE76F0061DCC4 /* TheSidebarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheSidebarController.m; sourceTree = "<group>"; };
+		1781F371187AEF950061DCC4 /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
+		1781F372187AEF950061DCC4 /* LeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewController.m; sourceTree = "<group>"; };
+		1781F374187AEFB90061DCC4 /* RightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightViewController.h; sourceTree = "<group>"; };
+		1781F375187AEFB90061DCC4 /* RightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightViewController.m; sourceTree = "<group>"; };
+		1781F377187AF01F0061DCC4 /* CenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenterViewController.h; sourceTree = "<group>"; };
+		1781F378187AF01F0061DCC4 /* CenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenterViewController.m; sourceTree = "<group>"; };
+		17B7360F187C6636005912DD /* bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,11 +149,13 @@
 		1781F32A187AE4060061DCC4 /* KitchenSink */ = {
 			isa = PBXGroup;
 			children = (
-				1781F353187AE4120061DCC4 /* Vendor */,
 				1781F333187AE4060061DCC4 /* AppDelegate.h */,
 				1781F334187AE4060061DCC4 /* AppDelegate.m */,
 				1781F336187AE4060061DCC4 /* Images.xcassets */,
+				1781F354187AE75C0061DCC4 /* Assets */,
+				1781F357187AE75C0061DCC4 /* Classes */,
 				1781F32B187AE4060061DCC4 /* Supporting Files */,
+				1781F353187AE4120061DCC4 /* Vendor */,
 			);
 			path = KitchenSink;
 			sourceTree = "<group>";
@@ -148,8 +192,106 @@
 		1781F353187AE4120061DCC4 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				1781F35B187AE76F0061DCC4 /* TheSidebarController */,
 			);
 			name = Vendor;
+			sourceTree = "<group>";
+		};
+		1781F354187AE75C0061DCC4 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				1781F355187AE75C0061DCC4 /* Images */,
+				1781F356187AE75C0061DCC4 /* Sounds */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		1781F355187AE75C0061DCC4 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				17B7360F187C6636005912DD /* bg@2x.png */,
+				1771E71E187DC617009F999A /* right-sidebar@2x.png */,
+				1771E71F187DC617009F999A /* left-sidebar@2x.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		1781F356187AE75C0061DCC4 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		1781F357187AE75C0061DCC4 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1781F358187AE75C0061DCC4 /* Controllers */,
+				1781F359187AE75C0061DCC4 /* Models */,
+				1781F36A187AE8380061DCC4 /* Views */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		1781F358187AE75C0061DCC4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1781F377187AF01F0061DCC4 /* CenterViewController.h */,
+				1781F378187AF01F0061DCC4 /* CenterViewController.m */,
+				1781F371187AEF950061DCC4 /* LeftViewController.h */,
+				1781F372187AEF950061DCC4 /* LeftViewController.m */,
+				1781F374187AEFB90061DCC4 /* RightViewController.h */,
+				1781F375187AEFB90061DCC4 /* RightViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		1781F359187AE75C0061DCC4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1781F35B187AE76F0061DCC4 /* TheSidebarController */ = {
+			isa = PBXGroup;
+			children = (
+				1781F35C187AE76F0061DCC4 /* Animations */,
+				1781F363187AE76F0061DCC4 /* TheSidebarController.h */,
+				1781F364187AE76F0061DCC4 /* TheSidebarController.m */,
+			);
+			name = TheSidebarController;
+			path = ../../../TheSidebarController;
+			sourceTree = "<group>";
+		};
+		1781F35C187AE76F0061DCC4 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				1781F35D187AE76F0061DCC4 /* SidebarAnimation.h */,
+				1781F35E187AE76F0061DCC4 /* SidebarAnimation.m */,
+				1771E710187DB5F4009F999A /* SidebarFacebookAnimation.h */,
+				1771E711187DB5F4009F999A /* SidebarFacebookAnimation.m */,
+				1771E713187DBC19009F999A /* SidebarAirbnbAnimation.h */,
+				1771E714187DBC19009F999A /* SidebarAirbnbAnimation.m */,
+				1771E722187E3CB6009F999A /* SidebarLuvocracyAnimation.h */,
+				1771E723187E3CB6009F999A /* SidebarLuvocracyAnimation.m */,
+				1771E725187E3F71009F999A /* SidebarFeedlyAnimation.h */,
+				1771E726187E3F71009F999A /* SidebarFeedlyAnimation.m */,
+				1771E728187E7523009F999A /* SidebarFlipboardAnimation.h */,
+				1771E729187E7523009F999A /* SidebarFlipboardAnimation.m */,
+				1771E731187E835C009F999A /* SidebarWunderlistAnimation.h */,
+				1771E732187E835C009F999A /* SidebarWunderlistAnimation.m */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
+		1781F36A187AE8380061DCC4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1771E70D187D279C009F999A /* CustomCell.h */,
+				1771E70E187D279C009F999A /* CustomCell.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +370,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1781F32F187AE4060061DCC4 /* InfoPlist.strings in Resources */,
+				1771E721187DC617009F999A /* left-sidebar@2x.png in Resources */,
+				17B73610187C6636005912DD /* bg@2x.png in Resources */,
+				1771E720187DC617009F999A /* right-sidebar@2x.png in Resources */,
 				1781F337187AE4060061DCC4 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -248,7 +393,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				1781F335187AE4060061DCC4 /* AppDelegate.m in Sources */,
+				1781F373187AEF950061DCC4 /* LeftViewController.m in Sources */,
+				1771E70F187D279C009F999A /* CustomCell.m in Sources */,
+				1781F376187AEFB90061DCC4 /* RightViewController.m in Sources */,
+				1781F379187AF01F0061DCC4 /* CenterViewController.m in Sources */,
+				1771E712187DB5F4009F999A /* SidebarFacebookAnimation.m in Sources */,
+				1771E727187E3F71009F999A /* SidebarFeedlyAnimation.m in Sources */,
 				1781F331187AE4060061DCC4 /* main.m in Sources */,
+				1771E72A187E7523009F999A /* SidebarFlipboardAnimation.m in Sources */,
+				1781F368187AE76F0061DCC4 /* TheSidebarController.m in Sources */,
+				1781F365187AE76F0061DCC4 /* SidebarAnimation.m in Sources */,
+				1771E733187E835C009F999A /* SidebarWunderlistAnimation.m in Sources */,
+				1771E715187DBC19009F999A /* SidebarAirbnbAnimation.m in Sources */,
+				1771E724187E3CB6009F999A /* SidebarLuvocracyAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +530,7 @@
 				GCC_PREFIX_HEADER = "KitchenSink/KitchenSink-Prefix.pch";
 				INFOPLIST_FILE = "KitchenSink/KitchenSink-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -386,6 +544,7 @@
 				GCC_PREFIX_HEADER = "KitchenSink/KitchenSink-Prefix.pch";
 				INFOPLIST_FILE = "KitchenSink/KitchenSink-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -451,6 +610,7 @@
 				1781F34F187AE4060061DCC4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1781F350187AE4060061DCC4 /* Build configuration list for PBXNativeTarget "KitchenSinkTests" */ = {
 			isa = XCConfigurationList;
@@ -459,6 +619,7 @@
 				1781F352187AE4060061DCC4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -24,6 +24,7 @@
 
 #import "TheSidebarController.h"
 
+
 static const CGFloat kAnimationDuration = 0.3f;
 static const CGFloat kVisibleWidth = 260.0f;
 
@@ -37,9 +38,11 @@ static const CGFloat kVisibleWidth = 260.0f;
 @property (strong, nonatomic) UIViewController *contentContainerViewController;
 @property (strong, nonatomic) UIViewController *leftSidebarContainerViewController;
 @property (strong, nonatomic) UIViewController *rightSidebarContainerViewController;
+@property (assign, nonatomic) CATransform3D contentTransform;
 
 - (void)showSidebarViewControllerFromSide:(Side)side withTransitionStyle:(SidebarTransitionStyle)transitionStyle;
 - (void)hideSidebarViewController;
+- (void)setAnchorPoint:(CGPoint)anchorPoint forView:(UIView *)view;
 
 @end
 
@@ -79,6 +82,7 @@ static const CGFloat kVisibleWidth = 260.0f;
         _animationDuration = kAnimationDuration;
         _visibleWidth = kVisibleWidth;
         _sidebarAnimations = @[SIDEBAR_ANIMATIONS];
+        _sidebarIsPresenting = NO;
     }
     
     return self;
@@ -91,6 +95,7 @@ static const CGFloat kVisibleWidth = 260.0f;
     NSAssert(self.contentViewController != nil, @"contentViewController was not set");
     
     [super viewDidLoad];
+    self.view.translatesAutoresizingMaskIntoConstraints = NO;
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
     if(self.leftSidebarViewController)
@@ -99,6 +104,7 @@ static const CGFloat kVisibleWidth = 260.0f;
         [self addChildViewController:self.leftSidebarContainerViewController];
         [self.view addSubview:self.leftSidebarContainerViewController.view];
         [self.leftSidebarContainerViewController didMoveToParentViewController:self];
+        self.leftSidebarContainerViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
         self.leftSidebarContainerViewController.view.hidden = YES;
         
         // Child View Controller
@@ -113,6 +119,7 @@ static const CGFloat kVisibleWidth = 260.0f;
         [self addChildViewController:self.rightSidebarContainerViewController];
         [self.view addSubview:self.rightSidebarContainerViewController.view];
         [self.rightSidebarContainerViewController didMoveToParentViewController:self];
+        self.rightSidebarContainerViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
         self.rightSidebarContainerViewController.view.hidden = YES;
         
         // Child View Controller
@@ -162,7 +169,7 @@ static const CGFloat kVisibleWidth = 260.0f;
 
 - (void)presentLeftSidebarViewController
 {
-    [self presentLeftSidebarViewControllerWithStyle:SidebarTransitionStyleReveal];
+    [self presentLeftSidebarViewControllerWithStyle:SidebarTransitionStyleFacebook];
 }
 
 - (void)presentLeftSidebarViewControllerWithStyle:(SidebarTransitionStyle)transitionStyle
@@ -173,7 +180,7 @@ static const CGFloat kVisibleWidth = 260.0f;
 
 - (void)presentRightSidebarViewController
 {
-    [self presentRightSidebarViewControllerWithStyle:SidebarTransitionStyleReveal];
+    [self presentRightSidebarViewControllerWithStyle:SidebarTransitionStyleFacebook];
 }
 
 - (void)presentRightSidebarViewControllerWithStyle:(SidebarTransitionStyle)transitionStyle
@@ -182,22 +189,26 @@ static const CGFloat kVisibleWidth = 260.0f;
     [self showSidebarViewControllerFromSide:RightSide withTransitionStyle:transitionStyle];
 }
 
-#pragma mark - SidebarController Private Methods
+
+#pragma mark - TheSidebarController Private Methods
 - (void)showSidebarViewControllerFromSide:(Side)side withTransitionStyle:(SidebarTransitionStyle)transitionStyle
 {    
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+    self.view.autoresizingMask = UIViewAutoresizingNone;
     
     if(side == LeftSide)
     {
         self.leftSidebarContainerViewController.view.hidden = NO;
         self.rightSidebarContainerViewController.view.hidden = YES;
         self.selectedSidebarView = self.leftSidebarContainerViewController.view;
+        self.view.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleHeight;
     }
     else if(side == RightSide)
     {
         self.rightSidebarContainerViewController.view.hidden = NO;
         self.leftSidebarContainerViewController.view.hidden = YES;
         self.selectedSidebarView = self.rightSidebarContainerViewController.view;
+        self.view.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight;
     }
     
     self.selectedSide = side;
@@ -212,6 +223,7 @@ static const CGFloat kVisibleWidth = 260.0f;
                               duration:self.animationDuration
                             completion:^(BOOL finished) {
                                 [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+                                self.sidebarIsPresenting = YES;
                             }
      ];
 }
@@ -229,12 +241,13 @@ static const CGFloat kVisibleWidth = 260.0f;
                                      duration:self.animationDuration
                                    completion:^(BOOL finished) {
                                        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+                                       self.sidebarIsPresenting = NO;
                                    }
      ];
 }
 
 
-#pragma mark - View Controller Setters
+#pragma mark - UIViewController Setters
 - (void)setContentViewController:(UIViewController *)contentViewController
 {
     // Old View Controller
@@ -262,6 +275,47 @@ static const CGFloat kVisibleWidth = 260.0f;
     NSLog(@"rightSidebarContentViewController");
 }
 
+
+#pragma mark - Autorotation Delegates
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    
+    if((toInterfaceOrientation == UIInterfaceOrientationPortrait) ||
+       (toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+    {
+        NSLog(@"Portrait");
+    }
+    else if((toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft) ||
+            (toInterfaceOrientation == UIInterfaceOrientationLandscapeRight))
+    {
+        NSLog(@"Landscape");
+    }
+    
+    
+}
+
+
+#pragma mark - Helpers
+- (void)setAnchorPoint:(CGPoint)anchorPoint forView:(UIView *)view
+{
+    CGPoint newPoint = CGPointMake(view.bounds.size.width * anchorPoint.x, view.bounds.size.height * anchorPoint.y);
+    CGPoint oldPoint = CGPointMake(view.bounds.size.width * view.layer.anchorPoint.x, view.bounds.size.height * view.layer.anchorPoint.y);
+    
+    newPoint = CGPointApplyAffineTransform(newPoint, view.transform);
+    oldPoint = CGPointApplyAffineTransform(oldPoint, view.transform);
+    
+    CGPoint position = view.layer.position;
+    
+    position.x -= oldPoint.x;
+    position.x += newPoint.x;
+    
+    position.y -= oldPoint.y;
+    position.y += newPoint.y;
+    
+    view.layer.position = position;
+    view.layer.anchorPoint = anchorPoint;
+}
 
 @end
 

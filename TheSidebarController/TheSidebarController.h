@@ -34,6 +34,7 @@
 
 @property (assign, nonatomic) NSTimeInterval animationDuration;
 @property (assign, nonatomic) CGFloat visibleWidth;
+@property (assign, nonatomic) BOOL sidebarIsPresenting;
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController
           leftSidebarViewController:(UIViewController *)leftSidebarViewController;

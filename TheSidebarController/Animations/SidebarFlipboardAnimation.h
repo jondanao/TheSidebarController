@@ -1,5 +1,5 @@
-// SidebarReveal3DAnimation.h
-// TheSidebarController
+// SidebarFlipboardAnimation.h
+// KitchenSink
 // 
 // Copyright (c) 2014 Jon Danao (danao.org | jondanao)
 //
@@ -23,6 +23,6 @@
 
 #import "SidebarAnimation.h"
 
-@interface SidebarReveal3DAnimation : SidebarAnimation
+@interface SidebarFlipboardAnimation : SidebarAnimation
 
 @end

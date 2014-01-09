@@ -1,5 +1,5 @@
-// SidebarRevealAnimation.m
-// Basic
+// SidebarFlipboardAnimation.m
+// KitchenSink
 //
 // Copyright (c) 2014 Jon Danao (danao.org | jondanao)
 //
@@ -22,90 +22,78 @@
 // THE SOFTWARE.
 
 
-#import "SidebarRevealAnimation.h"
+#import "SidebarFlipboardAnimation.h"
 
-@implementation SidebarRevealAnimation
+@implementation SidebarFlipboardAnimation
 
 + (void)animateContentView:(UIView *)contentView sidebarView:(UIView *)sidebarView fromSide:(Side)side visibleWidth:(CGFloat)visibleWidth duration:(NSTimeInterval)animationDuration completion:(void (^)(BOOL))completion
 {
-    // Animation settings for content view
-    NSTimeInterval contentAnimationDuration = animationDuration;
-    NSTimeInterval contentAnimationDelay = 0.0;
+    [self resetSidebarPosition:sidebarView];
+    [self resetContentPosition:contentView];
+    
+    
+    CGRect sidebarFrame = sidebarView.frame;
+    [sidebarView.superview bringSubviewToFront:sidebarView];
+    
     CATransform3D contentTransform = CATransform3DIdentity;
-    contentTransform.m34 = -1.0f / 1000.0f;
-    
-    // Animation settings for menu view
-    NSTimeInterval sidebarAnimationDuration = animationDuration;
-    NSTimeInterval sidebarAnimationDelay = 0.0;
-    CATransform3D sidebarTransform = CATransform3DIdentity;
-    sidebarTransform.m34 = -1.0f / 1000.0f;
-    
+    contentTransform = CATransform3DScale(contentTransform, 0.9, 0.9, 0.9);
     
     if(side == LeftSide)
     {
-        contentTransform = CATransform3DTranslate(contentTransform, visibleWidth, 0, 0);
+        sidebarFrame.origin.x = -sidebarFrame.size.width;
+        sidebarView.frame = sidebarFrame;
+        sidebarFrame.origin.x += visibleWidth;
     }
     else
     {
-        contentTransform = CATransform3DTranslate(contentTransform, -visibleWidth, 0, 0);
+        sidebarFrame.origin.x = sidebarFrame.size.width;
+        sidebarView.frame = sidebarFrame;
+        sidebarFrame.origin.x -= visibleWidth;
     }
     
-    // Animate content view
-    [UIView animateWithDuration:contentAnimationDuration
-                          delay:contentAnimationDelay
+    [UIView animateWithDuration:animationDuration
+                          delay:0.0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
+                         sidebarView.frame = sidebarFrame;
+                         contentView.alpha = 0.3;
                          contentView.layer.transform = contentTransform;
                      }
                      completion:^(BOOL finished) {
                          completion(finished);
                      }];
     
-    // Animate menu view
-    [UIView animateWithDuration:sidebarAnimationDuration
-                          delay:sidebarAnimationDelay
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         sidebarView.layer.transform = sidebarTransform;
-                     }
-                     completion:nil];
+    
+    
 }
-
 
 + (void)reverseAnimateContentView:(UIView *)contentView sidebarView:(UIView *)sidebarView fromSide:(Side)side visibleWidth:(CGFloat)visibleWidth duration:(NSTimeInterval)animationDuration completion:(void (^)(BOOL))completion
 {
-    // Animation settings for content view
-    NSTimeInterval contentAnimationDuration = animationDuration;
-    NSTimeInterval contentAnimationDelay = 0.0;
+    CGRect sidebarFrame = sidebarView.frame;
     CATransform3D contentTransform = CATransform3DIdentity;
-    contentTransform.m34 = -1.0f / 1000.0f;
-    contentTransform = CATransform3DTranslate(contentTransform, 0, 0, 0);
+    contentTransform = CATransform3DScale(contentTransform, 1.0, 1.0, 1.0);
     
-    // Animation settings for menu view
-    NSTimeInterval sidebarAnimationDuration = animationDuration;
-    NSTimeInterval sidebarAnimationDelay = 0.0;
-    CATransform3D sidebarTransform = CATransform3DIdentity;
-    sidebarTransform.m34 = -1.0f / 1000.0f;
+    if(side == LeftSide)
+    {
+        sidebarFrame.origin.x -= visibleWidth;
+    }
+    else
+    {
+        sidebarFrame.origin.x += visibleWidth;
+    }
     
-    // Animate content view
-    [UIView animateWithDuration:contentAnimationDuration
-                          delay:contentAnimationDelay
+    [UIView animateWithDuration:animationDuration
+                          delay:0.0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
+                         sidebarView.frame = sidebarFrame;
+                         contentView.alpha = 1;
                          contentView.layer.transform = contentTransform;
                      }
                      completion:^(BOOL finished) {
                          completion(finished);
                      }];
-    
-    // Animate menu view
-    [UIView animateWithDuration:sidebarAnimationDuration
-                          delay:sidebarAnimationDelay
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         sidebarView.layer.transform = sidebarTransform;
-                     }
-                     completion:nil];
 }
+
 
 @end
