@@ -1,5 +1,5 @@
 // SidebarFacebookAnimation.m
-// KitchenSink
+// TheSidebarController
 //
 // Copyright (c) 2014 Jon Danao (danao.org | jondanao)
 //

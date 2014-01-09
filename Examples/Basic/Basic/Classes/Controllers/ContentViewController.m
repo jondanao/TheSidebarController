@@ -28,7 +28,6 @@
 
 @interface ContentViewController ()
 
-@property (assign, nonatomic) BOOL menuIsShowing;
 - (void)showLeftMenu:(id)sender;
 - (void)showRightMenu:(id)sender;
 
@@ -43,7 +42,7 @@
     
     if(self)
     {
-        _menuIsShowing = NO;
+
     }
     
     return self;
@@ -70,7 +69,7 @@
 
 - (void)showLeftMenu:(id)sender
 {
-    if(self.menuIsShowing)
+    if(self.sidebarController.sidebarIsPresenting)
     {
         [self.sidebarController dismissSidebarViewController];
     }
@@ -78,13 +77,11 @@
     {
         [self.sidebarController presentLeftSidebarViewController];
     }
-    
-    self.menuIsShowing ^= YES;
 }
 
 - (void)showRightMenu:(id)sender
 {
-    if(self.menuIsShowing)
+    if(self.sidebarController.sidebarIsPresenting)
     {
         [self.sidebarController dismissSidebarViewController];
     }
@@ -92,8 +89,6 @@
     {
         [self.sidebarController presentLeftSidebarViewController];
     }
-    
-    self.menuIsShowing ^= YES;
 }
 
 @end

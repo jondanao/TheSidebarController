@@ -79,13 +79,7 @@
          @"subtitle":   @"Sidebar slides over while content zooms out"},
        
        @{@"title":      @"SidebarTransitionStyleWunderlist",
-         @"subtitle":   @"Content and sidebar slide making a parallax effect"},
-       
-       @{@"title":      @"SidebarTransitionStyleTaasky",
-         @"subtitle":   @""},
-       
-       @{@"title":      @"SidebarTransitionStyleTweetbot",
-         @"subtitle":   @""}
+         @"subtitle":   @"Content and sidebar slide making a parallax effect"}
     ];
     
     self.selectedRowCell = 0;

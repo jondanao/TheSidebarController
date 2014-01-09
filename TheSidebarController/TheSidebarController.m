@@ -259,20 +259,44 @@ static const CGFloat kVisibleWidth = 260.0f;
     // New View Controller
     UIViewController *newViewController = contentViewController;
     [self.contentContainerViewController addChildViewController:newViewController];
-    [self.contentContainerViewController.view addSubview:contentViewController.view];
-    [contentViewController didMoveToParentViewController:self.contentContainerViewController];
+    [self.contentContainerViewController.view addSubview:newViewController.view];
+    [newViewController didMoveToParentViewController:self.contentContainerViewController];
     
-    _contentViewController = contentViewController;
+    _contentViewController = newViewController;
 }
 
 - (void)setLeftSidebarViewController:(UIViewController *)leftSidebarViewController
 {
-    NSLog(@"leftSidebarContentViewController");
+    // Old View Controller
+    UIViewController *oldViewController = self.leftSidebarViewController;
+    [oldViewController willMoveToParentViewController:nil];
+    [oldViewController.view removeFromSuperview];
+    [oldViewController removeFromParentViewController];
+    
+    // New View Controller
+    UIViewController *newViewController = leftSidebarViewController;
+    [self.leftSidebarContainerViewController addChildViewController:newViewController];
+    [self.leftSidebarContainerViewController.view addSubview:newViewController.view];
+    [newViewController didMoveToParentViewController:self.leftSidebarContainerViewController];
+    
+    _leftSidebarViewController = newViewController;
 }
 
 - (void)setRightSidebarViewController:(UIViewController *)rightSidebarViewController
 {
-    NSLog(@"rightSidebarContentViewController");
+    // Old View Controller
+    UIViewController *oldViewController = self.leftSidebarViewController;
+    [oldViewController willMoveToParentViewController:nil];
+    [oldViewController.view removeFromSuperview];
+    [oldViewController removeFromParentViewController];
+    
+    // New View Controller
+    UIViewController *newViewController = rightSidebarViewController;
+    [self.rightSidebarContainerViewController addChildViewController:newViewController];
+    [self.rightSidebarContainerViewController.view addSubview:newViewController.view];
+    [newViewController didMoveToParentViewController:self.rightSidebarContainerViewController];
+    
+    _rightSidebarViewController = newViewController;
 }
 
 
