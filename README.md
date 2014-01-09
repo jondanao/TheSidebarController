@@ -1,5 +1,7 @@
 # TheSidebarController
 
+<img src="https://raw2.github.com/jondanao/TheSidebarController/master/demo.gif">
+
 TheSidebarController is a container view controller that manages 3 main view controllers namely - `contentViewController`, `leftSidebarController` and the `rightSidebarController`. Reveal the sidebar by calling either one of the following methods:
 
 - **`presentLeftSidebarViewController`** - presents the left sidebar using the default Facebook type animation
@@ -14,7 +16,7 @@ This project is inspired by [RESideMenu](https://github.com/romaonthego/RESideMe
 
 ### Manual
 
-Drag and drop `TheSidebarController` folder into your project. Add `#import "TheSidebarController.h" to all view controllers that need to use it.
+Drag and drop `TheSidebarController` folder into your project. Add `#import "TheSidebarController.h"` to all view controllers that need to use it.
 
 ### Cocoapods
 
