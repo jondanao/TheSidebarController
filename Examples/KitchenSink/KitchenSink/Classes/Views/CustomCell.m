@@ -1,7 +1,7 @@
-// LeftMenuViewController.m
-// Basic
+// CustomCell.m
+// KitchenSink
 //
-// Copyright (c) 2014 Jon Danao
+// Copyright (c) 2014 Jon Danao (danao.org | jondanao)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,23 +22,14 @@
 // THE SOFTWARE.
 
 
-#import "LeftMenuViewController.h"
-#import "TheSidebarController.h"
+#import "CustomCell.h"
 
-@implementation LeftMenuViewController
+@implementation CustomCell
 
-#pragma mark - UIViewController Lifecycle
-- (void)viewDidLoad
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    [super viewDidLoad];
-
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
-    [self.view addGestureRecognizer:tap];
-}
-
-- (void)tapped:(id)sender
-{
-    [self.sidebarController dismissMenuViewController];
+    self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
+    return self;
 }
 
 @end

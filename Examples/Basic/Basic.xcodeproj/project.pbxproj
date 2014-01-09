@@ -19,16 +19,22 @@
 		17059FC51873000E00E65FCA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17059FAD1873000E00E65FCA /* UIKit.framework */; };
 		17059FCD1873000E00E65FCA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 17059FCB1873000E00E65FCA /* InfoPlist.strings */; };
 		17059FCF1873000E00E65FCA /* BasicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 17059FCE1873000E00E65FCA /* BasicTests.m */; };
-		17059FED18732A4B00E65FCA /* TheSidebarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17059FEC18732A4B00E65FCA /* TheSidebarController.m */; };
-		175C67E818745A8500848EF0 /* RightMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 175C67E718745A8400848EF0 /* RightMenuViewController.m */; };
 		176BFF2A187734F100803EBB /* background@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 176BFF29187734F100803EBB /* background@2x.jpg */; };
 		176BFF2C187735D300803EBB /* content@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 176BFF2B187735D300803EBB /* content@2x.png */; };
 		176BFF331877AF7C00803EBB /* left-menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 176BFF311877AF7C00803EBB /* left-menu@2x.png */; };
 		176BFF381877B2C200803EBB /* right-menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 176BFF371877B2C200803EBB /* right-menu@2x.png */; };
-		1781F306187956D80061DCC4 /* SidebarAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781F305187956D80061DCC4 /* SidebarAnimation.m */; };
-		1781F309187981B80061DCC4 /* SidebarRevealAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781F308187981B80061DCC4 /* SidebarRevealAnimation.m */; };
+		1771E746187EDDE2009F999A /* SidebarAirbnbAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1771E737187EDDE1009F999A /* SidebarAirbnbAnimation.m */; };
+		1771E747187EDDE2009F999A /* SidebarAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1771E739187EDDE1009F999A /* SidebarAnimation.m */; };
+		1771E748187EDDE2009F999A /* SidebarFacebookAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1771E73B187EDDE1009F999A /* SidebarFacebookAnimation.m */; };
+		1771E749187EDDE2009F999A /* SidebarFeedlyAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1771E73D187EDDE1009F999A /* SidebarFeedlyAnimation.m */; };
+		1771E74A187EDDE2009F999A /* SidebarFlipboardAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1771E73F187EDDE1009F999A /* SidebarFlipboardAnimation.m */; };
+		1771E74B187EDDE2009F999A /* SidebarLuvocracyAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1771E741187EDDE1009F999A /* SidebarLuvocracyAnimation.m */; };
+		1771E74C187EDDE2009F999A /* SidebarWunderlistAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1771E743187EDDE1009F999A /* SidebarWunderlistAnimation.m */; };
+		1771E74D187EDDE2009F999A /* TheSidebarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1771E745187EDDE1009F999A /* TheSidebarController.m */; };
+		1781F30C1879AE120061DCC4 /* LeftSidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781F30B1879AE120061DCC4 /* LeftSidebarViewController.m */; };
+		1781F30F1879AE1E0061DCC4 /* RightSidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781F30E1879AE1E0061DCC4 /* RightSidebarViewController.m */; };
+		1781F317187AA97F0061DCC4 /* content2@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1781F316187AA97F0061DCC4 /* content2@2x.jpg */; };
 		179383C918733A6500E934AE /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 179383C818733A6500E934AE /* ContentViewController.m */; };
-		179383CC18733B0D00E934AE /* LeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 179383CB18733B0D00E934AE /* LeftMenuViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,22 +64,33 @@
 		17059FCA1873000E00E65FCA /* BasicTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BasicTests-Info.plist"; sourceTree = "<group>"; };
 		17059FCC1873000E00E65FCA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		17059FCE1873000E00E65FCA /* BasicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BasicTests.m; sourceTree = "<group>"; };
-		17059FEB18732A4B00E65FCA /* TheSidebarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheSidebarController.h; sourceTree = "<group>"; };
-		17059FEC18732A4B00E65FCA /* TheSidebarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheSidebarController.m; sourceTree = "<group>"; };
-		175C67E618745A8400848EF0 /* RightMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightMenuViewController.h; sourceTree = "<group>"; };
-		175C67E718745A8400848EF0 /* RightMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightMenuViewController.m; sourceTree = "<group>"; };
 		176BFF29187734F100803EBB /* background@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "background@2x.jpg"; sourceTree = "<group>"; };
 		176BFF2B187735D300803EBB /* content@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "content@2x.png"; sourceTree = "<group>"; };
 		176BFF311877AF7C00803EBB /* left-menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left-menu@2x.png"; sourceTree = "<group>"; };
 		176BFF371877B2C200803EBB /* right-menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right-menu@2x.png"; sourceTree = "<group>"; };
-		1781F304187956D80061DCC4 /* SidebarAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarAnimation.h; sourceTree = "<group>"; };
-		1781F305187956D80061DCC4 /* SidebarAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarAnimation.m; sourceTree = "<group>"; };
-		1781F307187981B80061DCC4 /* SidebarRevealAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarRevealAnimation.h; sourceTree = "<group>"; };
-		1781F308187981B80061DCC4 /* SidebarRevealAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarRevealAnimation.m; sourceTree = "<group>"; };
+		1771E736187EDDE1009F999A /* SidebarAirbnbAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarAirbnbAnimation.h; sourceTree = "<group>"; };
+		1771E737187EDDE1009F999A /* SidebarAirbnbAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarAirbnbAnimation.m; sourceTree = "<group>"; };
+		1771E738187EDDE1009F999A /* SidebarAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarAnimation.h; sourceTree = "<group>"; };
+		1771E739187EDDE1009F999A /* SidebarAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarAnimation.m; sourceTree = "<group>"; };
+		1771E73A187EDDE1009F999A /* SidebarFacebookAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarFacebookAnimation.h; sourceTree = "<group>"; };
+		1771E73B187EDDE1009F999A /* SidebarFacebookAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarFacebookAnimation.m; sourceTree = "<group>"; };
+		1771E73C187EDDE1009F999A /* SidebarFeedlyAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarFeedlyAnimation.h; sourceTree = "<group>"; };
+		1771E73D187EDDE1009F999A /* SidebarFeedlyAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarFeedlyAnimation.m; sourceTree = "<group>"; };
+		1771E73E187EDDE1009F999A /* SidebarFlipboardAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarFlipboardAnimation.h; sourceTree = "<group>"; };
+		1771E73F187EDDE1009F999A /* SidebarFlipboardAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarFlipboardAnimation.m; sourceTree = "<group>"; };
+		1771E740187EDDE1009F999A /* SidebarLuvocracyAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarLuvocracyAnimation.h; sourceTree = "<group>"; };
+		1771E741187EDDE1009F999A /* SidebarLuvocracyAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarLuvocracyAnimation.m; sourceTree = "<group>"; };
+		1771E742187EDDE1009F999A /* SidebarWunderlistAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarWunderlistAnimation.h; sourceTree = "<group>"; };
+		1771E743187EDDE1009F999A /* SidebarWunderlistAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarWunderlistAnimation.m; sourceTree = "<group>"; };
+		1771E744187EDDE1009F999A /* TheSidebarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheSidebarController.h; sourceTree = "<group>"; };
+		1771E745187EDDE1009F999A /* TheSidebarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheSidebarController.m; sourceTree = "<group>"; };
+		1781F30A1879AE120061DCC4 /* LeftSidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftSidebarViewController.h; sourceTree = "<group>"; };
+		1781F30B1879AE120061DCC4 /* LeftSidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftSidebarViewController.m; sourceTree = "<group>"; };
+		1781F30D1879AE1E0061DCC4 /* RightSidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightSidebarViewController.h; sourceTree = "<group>"; };
+		1781F30E1879AE1E0061DCC4 /* RightSidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightSidebarViewController.m; sourceTree = "<group>"; };
+		1781F316187AA97F0061DCC4 /* content2@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "content2@2x.jpg"; sourceTree = "<group>"; };
 		179383C718733A6500E934AE /* ContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
 		179383C818733A6500E934AE /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewController.m; sourceTree = "<group>"; };
-		179383CA18733B0D00E934AE /* LeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenuViewController.h; sourceTree = "<group>"; };
-		179383CB18733B0D00E934AE /* LeftMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenuViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +205,7 @@
 				176BFF371877B2C200803EBB /* right-menu@2x.png */,
 				176BFF29187734F100803EBB /* background@2x.jpg */,
 				176BFF2B187735D300803EBB /* content@2x.png */,
+				1781F316187AA97F0061DCC4 /* content2@2x.jpg */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -223,10 +241,10 @@
 			children = (
 				179383C718733A6500E934AE /* ContentViewController.h */,
 				179383C818733A6500E934AE /* ContentViewController.m */,
-				179383CA18733B0D00E934AE /* LeftMenuViewController.h */,
-				179383CB18733B0D00E934AE /* LeftMenuViewController.m */,
-				175C67E618745A8400848EF0 /* RightMenuViewController.h */,
-				175C67E718745A8400848EF0 /* RightMenuViewController.m */,
+				1781F30A1879AE120061DCC4 /* LeftSidebarViewController.h */,
+				1781F30B1879AE120061DCC4 /* LeftSidebarViewController.m */,
+				1781F30D1879AE1E0061DCC4 /* RightSidebarViewController.h */,
+				1781F30E1879AE1E0061DCC4 /* RightSidebarViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -248,29 +266,39 @@
 		17059FE918732A4000E65FCA /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				17059FEA18732A4B00E65FCA /* TheSidebarController */,
+				1771E734187EDDE1009F999A /* TheSidebarController */,
 			);
 			name = Vendor;
 			sourceTree = "<group>";
 		};
-		17059FEA18732A4B00E65FCA /* TheSidebarController */ = {
+		1771E734187EDDE1009F999A /* TheSidebarController */ = {
 			isa = PBXGroup;
 			children = (
-				176BFF45187852B100803EBB /* Animations */,
-				17059FEB18732A4B00E65FCA /* TheSidebarController.h */,
-				17059FEC18732A4B00E65FCA /* TheSidebarController.m */,
+				1771E735187EDDE1009F999A /* Animations */,
+				1771E744187EDDE1009F999A /* TheSidebarController.h */,
+				1771E745187EDDE1009F999A /* TheSidebarController.m */,
 			);
 			name = TheSidebarController;
 			path = ../../../TheSidebarController;
 			sourceTree = "<group>";
 		};
-		176BFF45187852B100803EBB /* Animations */ = {
+		1771E735187EDDE1009F999A /* Animations */ = {
 			isa = PBXGroup;
 			children = (
-				1781F304187956D80061DCC4 /* SidebarAnimation.h */,
-				1781F305187956D80061DCC4 /* SidebarAnimation.m */,
-				1781F307187981B80061DCC4 /* SidebarRevealAnimation.h */,
-				1781F308187981B80061DCC4 /* SidebarRevealAnimation.m */,
+				1771E736187EDDE1009F999A /* SidebarAirbnbAnimation.h */,
+				1771E737187EDDE1009F999A /* SidebarAirbnbAnimation.m */,
+				1771E738187EDDE1009F999A /* SidebarAnimation.h */,
+				1771E739187EDDE1009F999A /* SidebarAnimation.m */,
+				1771E73A187EDDE1009F999A /* SidebarFacebookAnimation.h */,
+				1771E73B187EDDE1009F999A /* SidebarFacebookAnimation.m */,
+				1771E73C187EDDE1009F999A /* SidebarFeedlyAnimation.h */,
+				1771E73D187EDDE1009F999A /* SidebarFeedlyAnimation.m */,
+				1771E73E187EDDE1009F999A /* SidebarFlipboardAnimation.h */,
+				1771E73F187EDDE1009F999A /* SidebarFlipboardAnimation.m */,
+				1771E740187EDDE1009F999A /* SidebarLuvocracyAnimation.h */,
+				1771E741187EDDE1009F999A /* SidebarLuvocracyAnimation.m */,
+				1771E742187EDDE1009F999A /* SidebarWunderlistAnimation.h */,
+				1771E743187EDDE1009F999A /* SidebarWunderlistAnimation.m */,
 			);
 			path = Animations;
 			sourceTree = "<group>";
@@ -352,6 +380,7 @@
 			files = (
 				17059FB41873000E00E65FCA /* InfoPlist.strings in Resources */,
 				176BFF2A187734F100803EBB /* background@2x.jpg in Resources */,
+				1781F317187AA97F0061DCC4 /* content2@2x.jpg in Resources */,
 				176BFF2C187735D300803EBB /* content@2x.png in Resources */,
 				176BFF331877AF7C00803EBB /* left-menu@2x.png in Resources */,
 				176BFF381877B2C200803EBB /* right-menu@2x.png in Resources */,
@@ -374,14 +403,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				175C67E818745A8500848EF0 /* RightMenuViewController.m in Sources */,
 				179383C918733A6500E934AE /* ContentViewController.m in Sources */,
+				1771E748187EDDE2009F999A /* SidebarFacebookAnimation.m in Sources */,
+				1781F30C1879AE120061DCC4 /* LeftSidebarViewController.m in Sources */,
+				1771E74A187EDDE2009F999A /* SidebarFlipboardAnimation.m in Sources */,
 				17059FBA1873000E00E65FCA /* AppDelegate.m in Sources */,
-				1781F306187956D80061DCC4 /* SidebarAnimation.m in Sources */,
-				1781F309187981B80061DCC4 /* SidebarRevealAnimation.m in Sources */,
-				17059FED18732A4B00E65FCA /* TheSidebarController.m in Sources */,
-				179383CC18733B0D00E934AE /* LeftMenuViewController.m in Sources */,
+				1771E747187EDDE2009F999A /* SidebarAnimation.m in Sources */,
+				1771E74D187EDDE2009F999A /* TheSidebarController.m in Sources */,
+				1771E74C187EDDE2009F999A /* SidebarWunderlistAnimation.m in Sources */,
+				1781F30F1879AE1E0061DCC4 /* RightSidebarViewController.m in Sources */,
+				1771E749187EDDE2009F999A /* SidebarFeedlyAnimation.m in Sources */,
 				17059FB61873000E00E65FCA /* main.m in Sources */,
+				1771E746187EDDE2009F999A /* SidebarAirbnbAnimation.m in Sources */,
+				1771E74B187EDDE2009F999A /* SidebarLuvocracyAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,7 +539,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Basic/Basic-Prefix.pch";
 				INFOPLIST_FILE = "Basic/Basic-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -518,7 +554,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Basic/Basic-Prefix.pch";
 				INFOPLIST_FILE = "Basic/Basic-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

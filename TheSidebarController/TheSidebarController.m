@@ -24,6 +24,7 @@
 
 #import "TheSidebarController.h"
 
+
 static const CGFloat kAnimationDuration = 0.3f;
 static const CGFloat kVisibleWidth = 260.0f;
 
@@ -32,11 +33,16 @@ static const CGFloat kVisibleWidth = 260.0f;
 
 @property (assign, nonatomic) SidebarTransitionStyle selectedTransitionStyle;
 @property (assign, nonatomic) Side selectedSide;
-@property (strong, nonatomic) UIView *selectedMenuView;
+@property (strong, nonatomic) UIView *selectedSidebarView;
 @property (strong, nonatomic) NSArray *sidebarAnimations;
+@property (strong, nonatomic) UIViewController *contentContainerViewController;
+@property (strong, nonatomic) UIViewController *leftSidebarContainerViewController;
+@property (strong, nonatomic) UIViewController *rightSidebarContainerViewController;
+@property (assign, nonatomic) CATransform3D contentTransform;
 
-- (void)showMenuViewControllerFromSide:(Side)side withTransitionStyle:(SidebarTransitionStyle)transitionStyle;
-- (void)hideMenuViewController;
+- (void)showSidebarViewControllerFromSide:(Side)side withTransitionStyle:(SidebarTransitionStyle)transitionStyle;
+- (void)hideSidebarViewController;
+- (void)setAnchorPoint:(CGPoint)anchorPoint forView:(UIView *)view;
 
 @end
 
@@ -46,32 +52,37 @@ static const CGFloat kVisibleWidth = 260.0f;
 #pragma mark - Designated Initializer
 - (id)init
 {
-    return [self initWithContentViewController:nil leftMenuViewController:nil rightMenuViewController:nil];
+    return [self initWithContentViewController:nil leftSidebarViewController:nil rightSidebarViewController:nil];
 }
 
-- (id)initWithContentViewController:(UIViewController *)contentViewController leftMenuViewController:(UIViewController *)leftMenuViewController
+- (id)initWithContentViewController:(UIViewController *)contentViewController leftSidebarViewController:(UIViewController *)leftSidebarViewController
 {
-    return [self initWithContentViewController:contentViewController leftMenuViewController:leftMenuViewController rightMenuViewController:nil];
+    return [self initWithContentViewController:contentViewController leftSidebarViewController:leftSidebarViewController rightSidebarViewController:nil];
 }
 
-- (id)initWithContentViewController:(UIViewController *)contentViewController rightMenuViewController:(UIViewController *)rightMenuViewController
+- (id)initWithContentViewController:(UIViewController *)contentViewController rightSidebarViewController:(UIViewController *)rightSidebarViewController
 {
-    return [self initWithContentViewController:contentViewController leftMenuViewController:nil rightMenuViewController:rightMenuViewController];
+    return [self initWithContentViewController:contentViewController leftSidebarViewController:nil rightSidebarViewController:rightSidebarViewController];
 }
 
-- (id)initWithContentViewController:(UIViewController *)contentViewController leftMenuViewController:(UIViewController *)leftMenuViewController rightMenuViewController:(UIViewController *)rightMenuViewController
+- (id)initWithContentViewController:(UIViewController *)contentViewController leftSidebarViewController:(UIViewController *)leftSidebarViewController rightSidebarViewController:(UIViewController *)rightSidebarViewController
 {
     self = [super init];
     
     if(self)
     {
-        _contentViewController = contentViewController;
-        _leftMenuViewController = leftMenuViewController;
-        _rightMenuViewController = rightMenuViewController;
+        _contentContainerViewController = [[UIViewController alloc] init];
+        _leftSidebarContainerViewController = [[UIViewController alloc] init];
+        _rightSidebarContainerViewController = [[UIViewController alloc] init];
         
-        self.animationDuration = kAnimationDuration;
-        self.visibleWidth = kVisibleWidth;
-        self.sidebarAnimations = @[SIDEBAR_ANIMATIONS];
+        _contentViewController = contentViewController;
+        _leftSidebarViewController = leftSidebarViewController;
+        _rightSidebarViewController = rightSidebarViewController;
+        
+        _animationDuration = kAnimationDuration;
+        _visibleWidth = kVisibleWidth;
+        _sidebarAnimations = @[SIDEBAR_ANIMATIONS];
+        _sidebarIsPresenting = NO;
     }
     
     return self;
@@ -84,26 +95,49 @@ static const CGFloat kVisibleWidth = 260.0f;
     NSAssert(self.contentViewController != nil, @"contentViewController was not set");
     
     [super viewDidLoad];
+    self.view.translatesAutoresizingMaskIntoConstraints = NO;
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
-    if(self.leftMenuViewController)
+    if(self.leftSidebarViewController)
     {
-        [self addChildViewController:self.leftMenuViewController];
-        [self.view addSubview:self.leftMenuViewController.view];
-        self.leftMenuViewController.view.hidden = YES;
-        [self.leftMenuViewController didMoveToParentViewController:self];
+        // Parent View Controller
+        [self addChildViewController:self.leftSidebarContainerViewController];
+        [self.view addSubview:self.leftSidebarContainerViewController.view];
+        [self.leftSidebarContainerViewController didMoveToParentViewController:self];
+        self.leftSidebarContainerViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
+        self.leftSidebarContainerViewController.view.hidden = YES;
+        
+        // Child View Controller
+        [self.leftSidebarContainerViewController addChildViewController:self.leftSidebarViewController];
+        [self.leftSidebarContainerViewController.view addSubview:self.leftSidebarViewController.view];
+        [self.leftSidebarViewController didMoveToParentViewController:self.leftSidebarContainerViewController];
     }
     
-    if(self.rightMenuViewController)
+    if(self.rightSidebarViewController)
     {
-        [self addChildViewController:self.rightMenuViewController];
-        [self.view addSubview:self.rightMenuViewController.view];
-        self.rightMenuViewController.view.hidden = YES;
-        [self.rightMenuViewController didMoveToParentViewController:self];
+        // Parent View Controller
+        [self addChildViewController:self.rightSidebarContainerViewController];
+        [self.view addSubview:self.rightSidebarContainerViewController.view];
+        [self.rightSidebarContainerViewController didMoveToParentViewController:self];
+        self.rightSidebarContainerViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
+        self.rightSidebarContainerViewController.view.hidden = YES;
+        
+        // Child View Controller
+        [self.rightSidebarContainerViewController addChildViewController:self.rightSidebarViewController];
+        [self.rightSidebarContainerViewController.view addSubview:self.rightSidebarViewController.view];
+        [self.rightSidebarViewController didMoveToParentViewController:self.rightSidebarContainerViewController];
     }
     
-    [self addChildViewController:self.contentViewController];
-    [self.view addSubview:self.contentViewController.view];
+    
+    // Parent View Controller
+    [self addChildViewController:self.contentContainerViewController];
+    [self.view addSubview:self.contentContainerViewController.view];
+    [self.contentContainerViewController didMoveToParentViewController:self];
+    
+    // Child View Controller
+    [self.contentContainerViewController addChildViewController:self.contentViewController];
+    [self.contentContainerViewController.view addSubview:self.contentViewController.view];
+    [self.contentViewController didMoveToParentViewController:self.contentContainerViewController];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -127,50 +161,54 @@ static const CGFloat kVisibleWidth = 260.0f;
 }
 
 
-#pragma mark - MenuViewController Presentation Methods
-- (void)dismissMenuViewController
+#pragma mark - TheSidebarController Presentation Methods
+- (void)dismissSidebarViewController
 {
-    [self hideMenuViewController];
+    [self hideSidebarViewController];
 }
 
-- (void)presentLeftMenuViewController
+- (void)presentLeftSidebarViewController
 {
-    [self presentLeftMenuViewControllerWithStyle:SidebarTransitionStyleReveal];
+    [self presentLeftSidebarViewControllerWithStyle:SidebarTransitionStyleFacebook];
 }
 
-- (void)presentLeftMenuViewControllerWithStyle:(SidebarTransitionStyle)transitionStyle
+- (void)presentLeftSidebarViewControllerWithStyle:(SidebarTransitionStyle)transitionStyle
 {
-    NSAssert(self.leftMenuViewController != nil, @"leftMenuViewController was not set");
-    [self showMenuViewControllerFromSide:LeftSide withTransitionStyle:transitionStyle];
+    NSAssert(self.leftSidebarViewController != nil, @"leftSidebarViewController was not set");
+    [self showSidebarViewControllerFromSide:LeftSide withTransitionStyle:transitionStyle];
 }
 
-- (void)presentRightMenuViewController
+- (void)presentRightSidebarViewController
 {
-    [self presentRightMenuViewControllerWithStyle:SidebarTransitionStyleReveal];
+    [self presentRightSidebarViewControllerWithStyle:SidebarTransitionStyleFacebook];
 }
 
- - (void)presentRightMenuViewControllerWithStyle:(SidebarTransitionStyle)transitionStyle
+- (void)presentRightSidebarViewControllerWithStyle:(SidebarTransitionStyle)transitionStyle
 {
-    NSAssert(self.rightMenuViewController != nil, @"rightMenuViewController was not set");
-    [self showMenuViewControllerFromSide:RightSide withTransitionStyle:transitionStyle];
+    NSAssert(self.rightSidebarViewController != nil, @"rightSidebarViewController was not set");
+    [self showSidebarViewControllerFromSide:RightSide withTransitionStyle:transitionStyle];
 }
 
-#pragma mark - MenuViewController Private Methods
-- (void)showMenuViewControllerFromSide:(Side)side withTransitionStyle:(SidebarTransitionStyle)transitionStyle
-{
+
+#pragma mark - TheSidebarController Private Methods
+- (void)showSidebarViewControllerFromSide:(Side)side withTransitionStyle:(SidebarTransitionStyle)transitionStyle
+{    
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+    self.view.autoresizingMask = UIViewAutoresizingNone;
     
     if(side == LeftSide)
     {
-        self.leftMenuViewController.view.hidden = NO;
-        self.rightMenuViewController.view.hidden = YES;
-        self.selectedMenuView = self.leftMenuViewController.view;
+        self.leftSidebarContainerViewController.view.hidden = NO;
+        self.rightSidebarContainerViewController.view.hidden = YES;
+        self.selectedSidebarView = self.leftSidebarContainerViewController.view;
+        self.view.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleHeight;
     }
     else if(side == RightSide)
     {
-        self.rightMenuViewController.view.hidden = NO;
-        self.leftMenuViewController.view.hidden = YES;
-        self.selectedMenuView = self.rightMenuViewController.view;
+        self.rightSidebarContainerViewController.view.hidden = NO;
+        self.leftSidebarContainerViewController.view.hidden = YES;
+        self.selectedSidebarView = self.rightSidebarContainerViewController.view;
+        self.view.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight;
     }
     
     self.selectedSide = side;
@@ -178,34 +216,130 @@ static const CGFloat kVisibleWidth = 260.0f;
     
     NSString *animationClassName = self.sidebarAnimations[transitionStyle];
     Class animationClass = NSClassFromString(animationClassName);
-    [animationClass animateContentView:self.contentViewController.view
-                           sidebarView:self.selectedMenuView
+    [animationClass animateContentView:self.contentContainerViewController.view
+                           sidebarView:self.selectedSidebarView
                               fromSide:self.selectedSide
                           visibleWidth:self.visibleWidth
                               duration:self.animationDuration
                             completion:^(BOOL finished) {
                                 [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+                                self.sidebarIsPresenting = YES;
                             }
      ];
 }
 
-- (void)hideMenuViewController
+- (void)hideSidebarViewController
 {
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     
     NSString *animationClassName = self.sidebarAnimations[self.selectedTransitionStyle];
     Class animationClass = NSClassFromString(animationClassName);
-    [animationClass reverseAnimateContentView:self.contentViewController.view
-                                  sidebarView:self.selectedMenuView
+    [animationClass reverseAnimateContentView:self.contentContainerViewController.view
+                                  sidebarView:self.selectedSidebarView
                                      fromSide:self.selectedSide
                                  visibleWidth:self.visibleWidth
                                      duration:self.animationDuration
                                    completion:^(BOOL finished) {
                                        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+                                       self.sidebarIsPresenting = NO;
                                    }
      ];
 }
 
+
+#pragma mark - UIViewController Setters
+- (void)setContentViewController:(UIViewController *)contentViewController
+{
+    // Old View Controller
+    UIViewController *oldViewController = self.contentViewController;
+    [oldViewController willMoveToParentViewController:nil];
+    [oldViewController.view removeFromSuperview];
+    [oldViewController removeFromParentViewController];
+    
+    // New View Controller
+    UIViewController *newViewController = contentViewController;
+    [self.contentContainerViewController addChildViewController:newViewController];
+    [self.contentContainerViewController.view addSubview:newViewController.view];
+    [newViewController didMoveToParentViewController:self.contentContainerViewController];
+    
+    _contentViewController = newViewController;
+}
+
+- (void)setLeftSidebarViewController:(UIViewController *)leftSidebarViewController
+{
+    // Old View Controller
+    UIViewController *oldViewController = self.leftSidebarViewController;
+    [oldViewController willMoveToParentViewController:nil];
+    [oldViewController.view removeFromSuperview];
+    [oldViewController removeFromParentViewController];
+    
+    // New View Controller
+    UIViewController *newViewController = leftSidebarViewController;
+    [self.leftSidebarContainerViewController addChildViewController:newViewController];
+    [self.leftSidebarContainerViewController.view addSubview:newViewController.view];
+    [newViewController didMoveToParentViewController:self.leftSidebarContainerViewController];
+    
+    _leftSidebarViewController = newViewController;
+}
+
+- (void)setRightSidebarViewController:(UIViewController *)rightSidebarViewController
+{
+    // Old View Controller
+    UIViewController *oldViewController = self.leftSidebarViewController;
+    [oldViewController willMoveToParentViewController:nil];
+    [oldViewController.view removeFromSuperview];
+    [oldViewController removeFromParentViewController];
+    
+    // New View Controller
+    UIViewController *newViewController = rightSidebarViewController;
+    [self.rightSidebarContainerViewController addChildViewController:newViewController];
+    [self.rightSidebarContainerViewController.view addSubview:newViewController.view];
+    [newViewController didMoveToParentViewController:self.rightSidebarContainerViewController];
+    
+    _rightSidebarViewController = newViewController;
+}
+
+
+#pragma mark - Autorotation Delegates
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    
+    if((toInterfaceOrientation == UIInterfaceOrientationPortrait) ||
+       (toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown))
+    {
+        NSLog(@"Portrait");
+    }
+    else if((toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft) ||
+            (toInterfaceOrientation == UIInterfaceOrientationLandscapeRight))
+    {
+        NSLog(@"Landscape");
+    }
+    
+    
+}
+
+
+#pragma mark - Helpers
+- (void)setAnchorPoint:(CGPoint)anchorPoint forView:(UIView *)view
+{
+    CGPoint newPoint = CGPointMake(view.bounds.size.width * anchorPoint.x, view.bounds.size.height * anchorPoint.y);
+    CGPoint oldPoint = CGPointMake(view.bounds.size.width * view.layer.anchorPoint.x, view.bounds.size.height * view.layer.anchorPoint.y);
+    
+    newPoint = CGPointApplyAffineTransform(newPoint, view.transform);
+    oldPoint = CGPointApplyAffineTransform(oldPoint, view.transform);
+    
+    CGPoint position = view.layer.position;
+    
+    position.x -= oldPoint.x;
+    position.x += newPoint.x;
+    
+    position.y -= oldPoint.y;
+    position.y += newPoint.y;
+    
+    view.layer.position = position;
+    view.layer.anchorPoint = anchorPoint;
+}
 
 @end
 
@@ -214,15 +348,15 @@ static const CGFloat kVisibleWidth = 260.0f;
 @implementation UIViewController(TheSidebarController)
 
 - (TheSidebarController *)sidebarController
-{    
-    if([self.parentViewController isKindOfClass:[TheSidebarController class]])
-    {
-        return (TheSidebarController *)self.parentViewController;
-    }
-    else if([self.parentViewController isKindOfClass:[UINavigationController class]] &&
-            [self.parentViewController.parentViewController isKindOfClass:[TheSidebarController class]])
+{
+    if([self.parentViewController.parentViewController isKindOfClass:[TheSidebarController class]])
     {
         return (TheSidebarController *)self.parentViewController.parentViewController;
+    }
+    else if([self.parentViewController isKindOfClass:[UINavigationController class]] &&
+            [self.parentViewController.parentViewController.parentViewController isKindOfClass:[TheSidebarController class]])
+    {
+        return (TheSidebarController *)self.parentViewController.parentViewController.parentViewController;
     }
     
     return nil;

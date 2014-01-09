@@ -1,4 +1,4 @@
-// SidebarRevealAnimation.h
+// RightSidebarViewController.h
 // Basic
 // 
 // Copyright (c) 2014 Jon Danao (danao.org | jondanao)
@@ -21,8 +21,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "SidebarAnimation.h"
+#import <UIKit/UIKit.h>
 
-@interface SidebarRevealAnimation : SidebarAnimation
+@interface RightSidebarViewController : UIViewController
 
 @end

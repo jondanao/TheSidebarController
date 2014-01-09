@@ -1,7 +1,7 @@
 // SidebarAnimation.h
 // TheSidebarController
 // 
-// Copyright (c) 2014 Jon Danao
+// Copyright (c) 2014 Jon Danao (danao.org | jondanao)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -26,27 +26,22 @@
 
 #define DEG2RAD(degrees) (degrees * M_PI / 180)
 #define SIDEBAR_ANIMATIONS \
-    @"SidebarRevealAnimation", \
-    @"SidebarReveal3DAnimation", \
-    @"SidebarCoverAnimation", \
-    @"SidebarCover3DAnimation", \
-    @"SidebarPushAnimation", \
-    @"SidebarPush3DAnimation", \
-    @"SidebarParallaxAnimation", \
-    @"SidebarScaleAnimation"
+    @"SidebarFacebookAnimation", \
+    @"SidebarAirbnbAnimation", \
+    @"SidebarLuvocracyAnimation", \
+    @"SidebarFeedlyAnimation", \
+    @"SidebarFlipboardAnimation", \
+    @"SidebarWunderlistAnimation"
 
-@class SidebarRevealAnimation;
 
 typedef NS_ENUM(NSInteger, SidebarTransitionStyle)
 {
-    SidebarTransitionStyleReveal,
-    SidebarTransitionStyleReveal3D,
-    SidebarTransitionStyleCover,
-    SidebarTransitionStyleCover3D,
-    SidebarTransitionStylePush,
-    SidebarTransitionStylePush3D,
-    SidebarTransitionStyleParallax,
-    SidebarTransitionStyleScale
+    SidebarTransitionStyleFacebook,
+    SidebarTransitionStyleAirbnb,
+    SidebarTransitionStyleLuvocracy,
+    SidebarTransitionStyleFeedly,
+    SidebarTransitionStyleFlipboard,
+    SidebarTransitionStyleWunderlist
 };
 
 typedef NS_ENUM(NSInteger, Side)
@@ -72,5 +67,8 @@ typedef NS_ENUM(NSInteger, Side)
                      visibleWidth:(CGFloat)visibleWidth
                          duration:(NSTimeInterval)animationDuration
                        completion:(void (^)(BOOL finished))completion;
+
++ (void)resetSidebarPosition:(UIView *)sidebarView;
++ (void)resetContentPosition:(UIView *)contentView;
 
 @end

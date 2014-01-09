@@ -1,7 +1,7 @@
-// RightMenuViewController.h
-// Basic
+// SidebarWunderlistAnimation.h
+// TheSidebarController
 // 
-// Copyright (c) 2014 Jon Danao
+// Copyright (c) 2014 Jon Danao (danao.org | jondanao)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -21,8 +21,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "SidebarAnimation.h"
 
-@interface RightMenuViewController : UIViewController
+@interface SidebarWunderlistAnimation : SidebarAnimation
 
 @end

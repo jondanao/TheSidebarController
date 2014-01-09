@@ -29,27 +29,28 @@
 @interface TheSidebarController : UIViewController
 
 @property (strong, nonatomic) UIViewController *contentViewController;
-@property (strong, nonatomic) UIViewController *leftMenuViewController;
-@property (strong, nonatomic) UIViewController *rightMenuViewController;
+@property (strong, nonatomic) UIViewController *leftSidebarViewController;
+@property (strong, nonatomic) UIViewController *rightSidebarViewController;
 
 @property (assign, nonatomic) NSTimeInterval animationDuration;
 @property (assign, nonatomic) CGFloat visibleWidth;
+@property (assign, nonatomic) BOOL sidebarIsPresenting;
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController
-             leftMenuViewController:(UIViewController *)leftMenuViewController;
+          leftSidebarViewController:(UIViewController *)leftSidebarViewController;
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController
-            rightMenuViewController:(UIViewController *)rightMenuViewController;
+         rightSidebarViewController:(UIViewController *)rightSidebarViewController;
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController
-             leftMenuViewController:(UIViewController *)leftMenuViewController
-            rightMenuViewController:(UIViewController *)rightMenuViewController;
+          leftSidebarViewController:(UIViewController *)leftSidebarViewController
+         rightSidebarViewController:(UIViewController *)rightSidebarViewController;
 
-- (void)dismissMenuViewController;
-- (void)presentLeftMenuViewController;
-- (void)presentLeftMenuViewControllerWithStyle:(SidebarTransitionStyle)transitionStyle;
-- (void)presentRightMenuViewController;
-- (void)presentRightMenuViewControllerWithStyle:(SidebarTransitionStyle)transitionStyle;
+- (void)dismissSidebarViewController;
+- (void)presentLeftSidebarViewController;
+- (void)presentLeftSidebarViewControllerWithStyle:(SidebarTransitionStyle)transitionStyle;
+- (void)presentRightSidebarViewController;
+- (void)presentRightSidebarViewControllerWithStyle:(SidebarTransitionStyle)transitionStyle;
 
 @end
 

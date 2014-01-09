@@ -26,8 +26,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "TheSidebarController.h"
 #import "ContentViewController.h"
-#import "LeftMenuViewController.h"
-#import "RightMenuViewController.h"
+#import "LeftSidebarViewController.h"
+#import "RightSidebarViewController.h"
 
 
 @implementation AppDelegate
@@ -36,18 +36,20 @@
 {
     ContentViewController *contentViewController = [[ContentViewController alloc] init];
     contentViewController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"content.png"]];
-    contentViewController.view.layer.shadowColor = [UIColor redColor].CGColor;
-    contentViewController.view.layer.shadowOffset = (CGSize){0.0, 0.0};
-    contentViewController.view.layer.shadowOpacity = 0.8;
-    contentViewController.view.layer.shadowRadius = 10.0;
+ 
+    UINavigationController *contentNavigationController = [[UINavigationController alloc] initWithRootViewController:contentViewController];
+    contentNavigationController.view.layer.shadowColor = [UIColor blackColor].CGColor;
+    contentNavigationController.view.layer.shadowOffset = (CGSize){0.0, 0.0};
+    contentNavigationController.view.layer.shadowOpacity = 0.8;
+    contentNavigationController.view.layer.shadowRadius = 10.0;
     
-    LeftMenuViewController *leftMenuViewController = [[LeftMenuViewController alloc] init];
-    leftMenuViewController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"left-menu.png"]];
+    LeftSidebarViewController *leftSidebarViewController = [[LeftSidebarViewController alloc] init];
+    leftSidebarViewController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"left-menu.png"]];
     
-    RightMenuViewController *rightMenuViewController = [[RightMenuViewController alloc] init];
-    rightMenuViewController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"right-menu.png"]];
+    RightSidebarViewController *rightSidebarViewController = [[RightSidebarViewController alloc] init];
+    rightSidebarViewController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"right-menu.png"]];
     
-    TheSidebarController *sidebarController = [[TheSidebarController alloc] initWithContentViewController:[[UINavigationController alloc] initWithRootViewController:contentViewController] leftMenuViewController:leftMenuViewController rightMenuViewController:rightMenuViewController];
+    TheSidebarController *sidebarController = [[TheSidebarController alloc] initWithContentViewController:contentNavigationController leftSidebarViewController:leftSidebarViewController rightSidebarViewController:rightSidebarViewController];
     sidebarController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.jpg"]];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

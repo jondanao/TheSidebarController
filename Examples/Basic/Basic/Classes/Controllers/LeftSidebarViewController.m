@@ -1,7 +1,7 @@
-// RightMenuViewController.m
+// LeftSidebarViewController.m
 // Basic
 //
-// Copyright (c) 2014 Jon Danao
+// Copyright (c) 2014 Jon Danao (danao.org | jondanao)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,8 +22,34 @@
 // THE SOFTWARE.
 
 
-#import "RightMenuViewController.h"
+#import "LeftSidebarViewController.h"
+#import "TheSidebarController.h"
 
-@implementation RightMenuViewController
+
+@interface LeftSidebarViewController()
+
+- (void)buttonClicked:(id)sender;
+
+@end
+
+
+@implementation LeftSidebarViewController
+
+- (void)viewDidLoad
+{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    button.frame = (CGRect){50, 100, 200, 50};
+    [button setTitle:@"Button" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+}
+
+- (void)buttonClicked:(id)sender
+{
+    UIViewController *viewController = [[UIViewController alloc] init];
+    viewController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"content2.jpg"]];
+    self.sidebarController.contentViewController = viewController;
+    [self.sidebarController dismissSidebarViewController];
+}
 
 @end
