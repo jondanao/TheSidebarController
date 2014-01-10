@@ -9,6 +9,15 @@ TheSidebarController is a container view controller that manages 3 main view con
 - **`presentRightSidebarViewController`** - presents the right sidebar using the default Facebook type animation
 - **`presentRightSidebarViewControllerWithStyle:`** - presents the right sidebar by specifying one of the available presentation styles
 
+### Available Transition Styles
+- **`SidebarTransitionStyleFacebook`** - Content slides to reveal sidebar
+- **`SidebarTransitionStyleAirbnb`** - Content rotates in 3D space to reveal sidebar
+- **`SidebarTransitionStyleLuvocracy`** - Content zooms out to reveal sidebar
+- **`SidebarTransitionStyleFeedly`** - Sidebar slides over content
+- **`SidebarTransitionStyleFlipboard`** - Sidebar slides over while content zooms out
+- **`SidebarTransitionStyleWunderlist`** - Content and sidebar slide making a parallax effect
+
+
 This project is inspired by [RESideMenu](https://github.com/romaonthego/RESideMenu/).
 
 
@@ -39,7 +48,9 @@ Cocoapods is amazing. If you're still not using it, start now! This is the recom
     LeftSidebarViewController *leftSidebarViewController = [[LeftSidebarViewController alloc] init];    
     RightSidebarViewController *rightSidebarViewController = [[RightSidebarViewController alloc] init];
     
-    TheSidebarController *sidebarController = [[TheSidebarController alloc] initWithContentViewController:contentNavigationController leftSidebarViewController:leftSidebarViewController rightSidebarViewController:rightSidebarViewController];
+    TheSidebarController *sidebarController = [[TheSidebarController alloc] initWithContentViewController:contentNavigationController
+                                                                                leftSidebarViewController:leftSidebarViewController
+                                                                               rightSidebarViewController:rightSidebarViewController];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
@@ -52,7 +63,6 @@ Cocoapods is amazing. If you're still not using it, start now! This is the recom
 ### Present the sidebar view controller
 
 ```objective-c
-//[self.sidebarController presentLeftSidebarViewController];
 [self.sidebarController presentLeftSidebarViewControllerWithStyle:SidebarTransitionStyleFacebook];
 ```
 
@@ -79,21 +89,17 @@ self.sidebarController.contentViewController = [[UIViewController alloc] init];
 
 ## Demo
 
-Build and run the `KitchenSink` project in Xcode to see TheSidebarController in action.
-
-## Sidebar Inspirations
-
-- Facebook 
-- Airbnb
-- Luvocracy
-- Feedly
-- Flipboard
-- Wunderlist
+Build and run the `Examples/Basic` and `Examples/KitchenSink` projects in Xcode to see TheSidebarController in action.
 
 
-## Contributing
+## Known Bugs
 
-Forks, patches and other feedback are welcome. 
+CATransform3D does not play well with autorotation. A simple 3D rotate screws up view positions when device orientation changes.
+
+
+## Feature Requests and Contributing
+
+Forks, patches and other feedback are welcome.
 
 
 ## Contact

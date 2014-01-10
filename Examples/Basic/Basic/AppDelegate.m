@@ -49,7 +49,9 @@
     RightSidebarViewController *rightSidebarViewController = [[RightSidebarViewController alloc] init];
     rightSidebarViewController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"right-menu.png"]];
     
-    TheSidebarController *sidebarController = [[TheSidebarController alloc] initWithContentViewController:contentNavigationController leftSidebarViewController:leftSidebarViewController rightSidebarViewController:rightSidebarViewController];
+    TheSidebarController *sidebarController = [[TheSidebarController alloc] initWithContentViewController:contentNavigationController
+                                                                                leftSidebarViewController:leftSidebarViewController
+                                                                               rightSidebarViewController:rightSidebarViewController];
     sidebarController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.jpg"]];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
