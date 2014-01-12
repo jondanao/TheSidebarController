@@ -13,6 +13,11 @@
 #import "LeftViewController.h"
 #import "RightViewController.h"
 
+@interface AppDelegate()<TheSidebarControllerDelegate>
+
+@end
+
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -32,7 +37,8 @@
     rightViewController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"right-sidebar"]];
     
     TheSidebarController *sidebarController = [[TheSidebarController alloc] initWithContentViewController:contentViewController leftSidebarViewController:leftViewController rightSidebarViewController:rightViewController];
-    sidebarController.view.backgroundColor = [UIColor blackColor];// colorWithPatternImage:[UIImage imageNamed:@"bg"]];
+    sidebarController.delegate = self;
+    sidebarController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
@@ -67,5 +73,27 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+#pragma mark - TheSidebarController Delegate Methods
+- (void)sidebarController:(TheSidebarController *)sidebarController willShowViewController:(UIViewController *)viewController
+{
+    NSLog(@"sidebarController:%@ willShowViewController:%@", sidebarController, viewController);
+}
+
+- (void)sidebarController:(TheSidebarController *)sidebarController didShowViewController:(UIViewController *)viewController
+{
+    NSLog(@"sidebarController:%@ didShowViewController:%@", sidebarController, viewController);
+}
+
+- (void)sidebarController:(TheSidebarController *)sidebarController willHideViewController:(UIViewController *)viewController
+{
+    NSLog(@"sidebarController:%@ willHideViewController:%@", sidebarController, viewController);
+}
+
+- (void)sidebarController:(TheSidebarController *)sidebarController didHideViewController:(UIViewController *)viewController
+{
+    NSLog(@"sidebarController:%@ didHideViewController:%@", sidebarController, viewController);
+}
+
 
 @end

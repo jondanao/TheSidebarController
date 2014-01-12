@@ -25,6 +25,7 @@
 #import <UIKit/UIKit.h>
 #import "SidebarAnimation.h"
 
+@protocol TheSidebarControllerDelegate;
 
 @interface TheSidebarController : UIViewController
 
@@ -35,6 +36,7 @@
 @property (assign, nonatomic) NSTimeInterval animationDuration;
 @property (assign, nonatomic) CGFloat visibleWidth;
 @property (assign, nonatomic) BOOL sidebarIsPresenting;
+@property (assign, nonatomic) id<TheSidebarControllerDelegate> delegate;
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController
           leftSidebarViewController:(UIViewController *)leftSidebarViewController;
@@ -52,6 +54,17 @@
 - (void)presentRightSidebarViewController;
 - (void)presentRightSidebarViewControllerWithStyle:(SidebarTransitionStyle)transitionStyle;
 
+@end
+
+
+
+@protocol TheSidebarControllerDelegate <NSObject>
+
+@optional
+- (void)sidebarController:(TheSidebarController *)sidebarController willShowViewController:(UIViewController *)viewController;
+- (void)sidebarController:(TheSidebarController *)sidebarController didShowViewController:(UIViewController *)viewController;
+- (void)sidebarController:(TheSidebarController *)sidebarController willHideViewController:(UIViewController *)viewController;
+- (void)sidebarController:(TheSidebarController *)sidebarController didHideViewController:(UIViewController *)viewController;
 @end
 
 
