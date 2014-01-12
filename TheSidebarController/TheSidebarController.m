@@ -33,7 +33,7 @@ static const CGFloat kVisibleWidth = 260.0f;
 
 @property (assign, nonatomic) SidebarTransitionStyle selectedTransitionStyle;
 @property (assign, nonatomic) Side selectedSide;
-@property (strong, nonatomic) UIView *selectedSidebarView;
+@property (strong, nonatomic) UIViewController *selectedSidebarViewController;
 @property (strong, nonatomic) NSArray *sidebarAnimations;
 @property (strong, nonatomic) UIViewController *contentContainerViewController;
 @property (strong, nonatomic) UIViewController *leftSidebarContainerViewController;
@@ -200,30 +200,40 @@ static const CGFloat kVisibleWidth = 260.0f;
     {
         self.leftSidebarContainerViewController.view.hidden = NO;
         self.rightSidebarContainerViewController.view.hidden = YES;
-        self.selectedSidebarView = self.leftSidebarContainerViewController.view;
+        self.selectedSidebarViewController = self.leftSidebarViewController;
         self.view.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleHeight;
     }
     else if(side == RightSide)
     {
         self.rightSidebarContainerViewController.view.hidden = NO;
         self.leftSidebarContainerViewController.view.hidden = YES;
-        self.selectedSidebarView = self.rightSidebarContainerViewController.view;
+        self.selectedSidebarViewController = self.rightSidebarViewController;
         self.view.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight;
     }
     
     self.selectedSide = side;
     self.selectedTransitionStyle = transitionStyle;
     
+    if([self.delegate conformsToProtocol:@protocol(TheSidebarControllerDelegate)] && [self.delegate respondsToSelector:@selector(sidebarController:willShowViewController:)])
+    {
+        [self.delegate sidebarController:self willShowViewController:self.selectedSidebarViewController];
+    }
+    
     NSString *animationClassName = self.sidebarAnimations[transitionStyle];
     Class animationClass = NSClassFromString(animationClassName);
     [animationClass animateContentView:self.contentContainerViewController.view
-                           sidebarView:self.selectedSidebarView
+                           sidebarView:self.selectedSidebarViewController.parentViewController.view
                               fromSide:self.selectedSide
                           visibleWidth:self.visibleWidth
                               duration:self.animationDuration
                             completion:^(BOOL finished) {
                                 [[UIApplication sharedApplication] endIgnoringInteractionEvents];
                                 self.sidebarIsPresenting = YES;
+                                
+                                if([self.delegate conformsToProtocol:@protocol(TheSidebarControllerDelegate)] && [self.delegate respondsToSelector:@selector(sidebarController:didShowViewController:)])
+                                {
+                                    [self.delegate sidebarController:self didShowViewController:self.selectedSidebarViewController];
+                                }
                             }
      ];
 }
@@ -232,16 +242,26 @@ static const CGFloat kVisibleWidth = 260.0f;
 {
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     
+    if([self.delegate conformsToProtocol:@protocol(TheSidebarControllerDelegate)] && [self.delegate respondsToSelector:@selector(sidebarController:willHideViewController:)])
+    {
+        [self.delegate sidebarController:self willHideViewController:self.selectedSidebarViewController];
+    }
+    
     NSString *animationClassName = self.sidebarAnimations[self.selectedTransitionStyle];
     Class animationClass = NSClassFromString(animationClassName);
     [animationClass reverseAnimateContentView:self.contentContainerViewController.view
-                                  sidebarView:self.selectedSidebarView
+                                  sidebarView:self.selectedSidebarViewController.parentViewController.view
                                      fromSide:self.selectedSide
                                  visibleWidth:self.visibleWidth
                                      duration:self.animationDuration
                                    completion:^(BOOL finished) {
                                        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
                                        self.sidebarIsPresenting = NO;
+                                       
+                                       if([self.delegate conformsToProtocol:@protocol(TheSidebarControllerDelegate)] && [self.delegate respondsToSelector:@selector(sidebarController:didHideViewController:)])
+                                       {
+                                           [self.delegate sidebarController:self didHideViewController:self.selectedSidebarViewController];
+                                       }
                                    }
      ];
 }

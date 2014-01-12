@@ -4,12 +4,15 @@
 
 TheSidebarController is a container view controller that manages 3 main view controllers namely - `contentViewController`, `leftSidebarController` and the `rightSidebarController`. Reveal the sidebar by calling either one of the following methods:
 
+
+### Presentation Methods
+
 - **`presentLeftSidebarViewController`** - presents the left sidebar using the default Facebook type animation
 - **`presentLeftSidebarViewControllerWithStyle:`** - presents the left sidebar by specifying one of the available presentation styles
 - **`presentRightSidebarViewController`** - presents the right sidebar using the default Facebook type animation
 - **`presentRightSidebarViewControllerWithStyle:`** - presents the right sidebar by specifying one of the available presentation styles
 
-### Available Transition Styles
+### Transition Styles
 - **`SidebarTransitionStyleFacebook`** - Content slides to reveal sidebar
 - **`SidebarTransitionStyleAirbnb`** - Content rotates in 3D space to reveal sidebar
 - **`SidebarTransitionStyleLuvocracy`** - Content zooms out to reveal sidebar
@@ -17,8 +20,14 @@ TheSidebarController is a container view controller that manages 3 main view con
 - **`SidebarTransitionStyleFlipboard`** - Sidebar slides over while content zooms out
 - **`SidebarTransitionStyleWunderlist`** - Content and sidebar slide making a parallax effect
 
+### Delegation Methods
+- **`sidebarController:willShowViewController:`**
+- **`sidebarController:didShowViewController:`**
+- **`sidebarController:willHideViewController:`**
+- **`sidebarController:didHideViewController:`**
 
-This project is inspired by [RESideMenu](https://github.com/romaonthego/RESideMenu/).
+
+This project is inspired by [RESideMenu](https://github.com/romaonthego/RESideMenu/). I almost copied everything. Thanks Roman! :)
 
 
 ## Installation
@@ -94,7 +103,7 @@ Build and run the `Examples/Basic` and `Examples/KitchenSink` projects in Xcode 
 
 ## Known Bugs
 
-CATransform3D does not play well with autorotation. A simple 3D rotate screws up view positions when device orientation changes.
+CATransform3D does not play well with autorotation. A simple 3D rotate screws up view positions when device orientation changes. Would appreciate some help on this. 
 
 
 ## Feature Requests and Contributing
