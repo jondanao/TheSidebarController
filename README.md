@@ -40,32 +40,32 @@ Drag and drop `TheSidebarController` folder into your project. Add `#import "The
 
 Cocoapods is amazing. If you're still not using it, start now! This is the recommended approach to manage your dependencies. Learn from their official website: [http://guides.cocoapods.org/](http://guides.cocoapods.org/)
 
-1. In the project folder where .xcodeproj resides, **create a Podfile:**
+In the project folder where .xcodeproj resides, **create a Podfile:**
 
 ```bash
 $ touch Podfile
 ```
 
-- Edit Podfile and **add TheSidebarController:**
+Edit Podfile and **add TheSidebarController:**
 
 ```bash
 platform :ios, '7.0'
 pod 'TheSidebarController', '~> 0.6'
 ```
 
-- **Install:**
+**Install:**
 
 ```bash
 $ pod install
 ```
 
-- **Open .xcworkspace** and not the .xcodeproj:
+**Open .xcworkspace** and not the .xcodeproj:
 
 ```bash
 $ open MyApp.xcworkspace
 ```
 
-- **Import TheSidebarController** where needed:
+**Import TheSidebarController** where needed:
 
 ```objective-c
 #import <TheSidebarController/TheSidebarController.h>
