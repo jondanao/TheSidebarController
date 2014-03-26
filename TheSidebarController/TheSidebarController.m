@@ -88,6 +88,30 @@ static const CGFloat kVisibleWidth = 260.0f;
     return self;
 }
 
+- (id)initWithContentViewController:(UIViewController *)contentViewController
+          leftSidebarViewController:(UIViewController *)leftSidebarViewController
+           storyboardsUseAutoLayout:(BOOL)storyboardsUseAutoLayout
+{
+    self.storyboardsUseAutolayout = storyboardsUseAutoLayout;
+    return [self initWithContentViewController:contentViewController leftSidebarViewController:leftSidebarViewController];
+}
+
+- (id)initWithContentViewController:(UIViewController *)contentViewController
+         rightSidebarViewController:(UIViewController *)rightSidebarViewController
+           storyboardsUseAutoLayout:(BOOL)storyboardsUseAutoLayout
+{
+    self.storyboardsUseAutolayout = storyboardsUseAutoLayout;
+    return [self initWithContentViewController:contentViewController rightSidebarViewController:rightSidebarViewController];
+}
+
+- (id)initWithContentViewController:(UIViewController *)contentViewController
+          leftSidebarViewController:(UIViewController *)leftSidebarViewController
+         rightSidebarViewController:(UIViewController *)rightSidebarViewController
+           storyboardsUseAutoLayout:(BOOL)storyboardsUseAutoLayout
+{
+    self.storyboardsUseAutolayout = storyboardsUseAutoLayout;
+    return [self initWithContentViewController:contentViewController leftSidebarViewController:leftSidebarViewController rightSidebarViewController:rightSidebarViewController];
+}
 
 #pragma mark - UIViewController Lifecycle
 - (void)viewDidLoad
@@ -95,7 +119,7 @@ static const CGFloat kVisibleWidth = 260.0f;
     NSAssert(self.contentViewController != nil, @"contentViewController was not set");
     
     [super viewDidLoad];
-    self.view.translatesAutoresizingMaskIntoConstraints = NO;
+    self.view.translatesAutoresizingMaskIntoConstraints = self.storyboardsUseAutolayout;
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
     if(self.leftSidebarViewController)
@@ -104,7 +128,7 @@ static const CGFloat kVisibleWidth = 260.0f;
         [self addChildViewController:self.leftSidebarContainerViewController];
         [self.view addSubview:self.leftSidebarContainerViewController.view];
         [self.leftSidebarContainerViewController didMoveToParentViewController:self];
-        self.leftSidebarContainerViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
+        self.leftSidebarContainerViewController.view.translatesAutoresizingMaskIntoConstraints = self.storyboardsUseAutolayout;
         self.leftSidebarContainerViewController.view.hidden = YES;
         
         // Child View Controller
@@ -119,7 +143,7 @@ static const CGFloat kVisibleWidth = 260.0f;
         [self addChildViewController:self.rightSidebarContainerViewController];
         [self.view addSubview:self.rightSidebarContainerViewController.view];
         [self.rightSidebarContainerViewController didMoveToParentViewController:self];
-        self.rightSidebarContainerViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
+        self.rightSidebarContainerViewController.view.translatesAutoresizingMaskIntoConstraints = self.storyboardsUseAutolayout;
         self.rightSidebarContainerViewController.view.hidden = YES;
         
         // Child View Controller
@@ -192,7 +216,7 @@ static const CGFloat kVisibleWidth = 260.0f;
 
 #pragma mark - TheSidebarController Private Methods
 - (void)showSidebarViewControllerFromSide:(Side)side withTransitionStyle:(SidebarTransitionStyle)transitionStyle
-{    
+{
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     self.view.autoresizingMask = UIViewAutoresizingNone;
     
