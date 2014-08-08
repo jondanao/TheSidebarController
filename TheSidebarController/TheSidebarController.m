@@ -213,6 +213,14 @@ static const CGFloat kVisibleWidth = 260.0f;
     [self showSidebarViewControllerFromSide:RightSide withTransitionStyle:transitionStyle];
 }
 
+- (void)replaceContentViewControllerWithViewController:(UIViewController *)contentViewController dismissingSidebarViewController:(BOOL)dismissSidebar
+{
+    self.contentViewController = contentViewController;
+    
+    if (dismissSidebar) {
+        [self dismissSidebarViewController];
+    }
+}
 
 #pragma mark - TheSidebarController Private Methods
 - (void)showSidebarViewControllerFromSide:(Side)side withTransitionStyle:(SidebarTransitionStyle)transitionStyle
@@ -342,7 +350,6 @@ static const CGFloat kVisibleWidth = 260.0f;
     
     _rightSidebarViewController = newViewController;
 }
-
 
 #pragma mark - Autorotation Delegates
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration

@@ -68,6 +68,8 @@
 - (void)presentRightSidebarViewController;
 - (void)presentRightSidebarViewControllerWithStyle:(SidebarTransitionStyle)transitionStyle;
 
+- (void)replaceContentViewControllerWithViewController:(UIViewController *)contentViewController dismissingSidebarViewController:(BOOL)dismissSidebar;
+
 @end
 
 
