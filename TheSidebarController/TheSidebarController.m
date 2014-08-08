@@ -34,6 +34,7 @@ static const CGFloat kVisibleWidth = 260.0f;
 @property (assign, nonatomic) SidebarTransitionStyle selectedTransitionStyle;
 @property (assign, nonatomic) Side selectedSide;
 @property (strong, nonatomic) UIViewController *selectedSidebarViewController;
+@property (strong, nonatomic) UIView *contentContainerViewControllerTouchView;
 @property (strong, nonatomic) NSArray *sidebarAnimations;
 @property (strong, nonatomic) UIViewController *contentContainerViewController;
 @property (strong, nonatomic) UIViewController *leftSidebarContainerViewController;
@@ -261,6 +262,12 @@ static const CGFloat kVisibleWidth = 260.0f;
                             completion:^(BOOL finished) {
                                 [[UIApplication sharedApplication] endIgnoringInteractionEvents];
                                 self.sidebarIsPresenting = YES;
+                                if (self.allowsDismissalFromContentContainer) {
+                                    // Add layer for touch at top of view hierarchy
+                                    self.contentContainerViewControllerTouchView = [[UIView alloc] initWithFrame:self.contentContainerViewController.view.bounds];
+                                    [self.contentContainerViewControllerTouchView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissSidebarViewController)]];
+                                    [self.contentContainerViewController.view addSubview:self.contentContainerViewControllerTouchView];
+                                }
                                 
                                 if([self.delegate conformsToProtocol:@protocol(TheSidebarControllerDelegate)] && [self.delegate respondsToSelector:@selector(sidebarController:didShowViewController:)])
                                 {
@@ -289,6 +296,8 @@ static const CGFloat kVisibleWidth = 260.0f;
                                    completion:^(BOOL finished) {
                                        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
                                        self.sidebarIsPresenting = NO;
+                                       [self.contentContainerViewControllerTouchView removeFromSuperview];
+                                       self.contentContainerViewControllerTouchView = nil;
                                        
                                        if([self.delegate conformsToProtocol:@protocol(TheSidebarControllerDelegate)] && [self.delegate respondsToSelector:@selector(sidebarController:didHideViewController:)])
                                        {
@@ -350,6 +359,7 @@ static const CGFloat kVisibleWidth = 260.0f;
     
     _rightSidebarViewController = newViewController;
 }
+
 
 #pragma mark - Autorotation Delegates
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration

@@ -38,6 +38,7 @@
 @property (assign, nonatomic) BOOL sidebarIsPresenting;
 @property (assign, nonatomic) id<TheSidebarControllerDelegate> delegate;
 @property (assign, nonatomic) BOOL storyboardsUseAutolayout;
+@property (assign, nonatomic) BOOL allowsDismissalFromContentContainer;
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController
           leftSidebarViewController:(UIViewController *)leftSidebarViewController;
