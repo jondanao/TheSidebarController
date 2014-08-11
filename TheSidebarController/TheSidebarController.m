@@ -214,15 +214,6 @@ static const CGFloat kVisibleWidth = 260.0f;
     [self showSidebarViewControllerFromSide:RightSide withTransitionStyle:transitionStyle];
 }
 
-- (void)replaceContentViewControllerWithViewController:(UIViewController *)contentViewController dismissingSidebarViewController:(BOOL)dismissSidebar
-{
-    self.contentViewController = contentViewController;
-    
-    if (dismissSidebar) {
-        [self dismissSidebarViewController];
-    }
-}
-
 #pragma mark - TheSidebarController Private Methods
 - (void)showSidebarViewControllerFromSide:(Side)side withTransitionStyle:(SidebarTransitionStyle)transitionStyle
 {
@@ -324,6 +315,15 @@ static const CGFloat kVisibleWidth = 260.0f;
     [newViewController didMoveToParentViewController:self.contentContainerViewController];
     
     _contentViewController = newViewController;
+}
+
+- (void)setContentViewController:(UIViewController *)viewController shouldDismissSidebarViewController:(BOOL)dismissSidebar;
+{
+    self.contentViewController = viewController;
+    
+    if (dismissSidebar) {
+        [self dismissSidebarViewController];
+    }
 }
 
 - (void)setLeftSidebarViewController:(UIViewController *)leftSidebarViewController
