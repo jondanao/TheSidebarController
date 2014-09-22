@@ -50,6 +50,11 @@ static const CGFloat kVisibleWidth = 260.0f;
 
 @implementation TheSidebarController
 
+- (BOOL)shouldAutorotate
+{
+    return (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) ? NO : YES;
+}
+
 #pragma mark - Designated Initializer
 - (id)init
 {
@@ -120,6 +125,7 @@ static const CGFloat kVisibleWidth = 260.0f;
     NSAssert(self.contentViewController != nil, @"contentViewController was not set");
     
     [super viewDidLoad];
+    [self setNeedsStatusBarAppearanceUpdate];
     self.view.translatesAutoresizingMaskIntoConstraints = self.storyboardsUseAutolayout;
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
@@ -360,6 +366,10 @@ static const CGFloat kVisibleWidth = 260.0f;
     _rightSidebarViewController = newViewController;
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
 
 #pragma mark - Autorotation Delegates
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration

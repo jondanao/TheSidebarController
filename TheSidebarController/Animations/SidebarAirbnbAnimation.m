@@ -24,6 +24,8 @@
 
 #import "SidebarAirbnbAnimation.h"
 
+#import <POP.h>
+
 @implementation SidebarAirbnbAnimation
 
 + (void)animateContentView:(UIView *)contentView sidebarView:(UIView *)sidebarView fromSide:(Side)side visibleWidth:(CGFloat)visibleWidth duration:(NSTimeInterval)animationDuration completion:(void (^)(BOOL))completion
@@ -48,6 +50,9 @@
     if(side == LeftSide)
     {
         contentTransform = CATransform3DTranslate(contentTransform, visibleWidth - (contentView.frame.size.width / 2 * 0.4), 0.0, 0.0);
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            contentTransform = CATransform3DTranslate(contentTransform, visibleWidth - (contentView.frame.size.width / 2 * 0.4) + 100, 0.0, 0.0);
+        }
         contentTransform = CATransform3DScale(contentTransform, 0.6, 0.6, 0.6);
         contentTransform = CATransform3DRotate(contentTransform, DEG2RAD(-45), 0.0, 1.0, 0.0);
     }
@@ -95,17 +100,22 @@
     __block CATransform3D sidebarTransform = CATransform3DIdentity;
     sidebarTransform = CATransform3DScale(sidebarTransform, 1.7, 1.7, 1.7);
     
+    [UIView animateWithDuration:(animationDuration * 2) delay:0.0 usingSpringWithDamping:0.6 initialSpringVelocity:0.2 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        contentView.layer.transform = contentTransform;
+    } completion:^(BOOL finished) {
+        completion(finished);
+    }];
     
-    // Animate content view
-    [UIView animateWithDuration:animationDuration
-                          delay:0.0
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         contentView.layer.transform = contentTransform;
-                     }
-                     completion:^(BOOL finished) {
-                         completion(finished);
-                     }];
+//    // Animate content view
+//    [UIView animateWithDuration:animationDuration
+//                          delay:0.0
+//                        options:UIViewAnimationOptionCurveEaseInOut
+//                     animations:^{
+//                         contentView.layer.transform = contentTransform;
+//                     }
+//                     completion:^(BOOL finished) {
+//                         completion(finished);
+//                     }];
     
     // Animate menu view
     [UIView animateWithDuration:animationDuration
