@@ -52,7 +52,17 @@ static const CGFloat kVisibleWidth = 260.0f;
 
 - (BOOL)shouldAutorotate
 {
-    return (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) ? NO : YES;
+    return NO;
+}
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return UIInterfaceOrientationPortrait;
 }
 
 #pragma mark - Designated Initializer
