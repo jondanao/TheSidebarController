@@ -38,6 +38,7 @@
 @property (assign, nonatomic) BOOL sidebarIsPresenting;
 @property (assign, nonatomic) id<TheSidebarControllerDelegate> delegate;
 @property (assign, nonatomic) BOOL storyboardsUseAutolayout;
+@property (assign, nonatomic) BOOL allowsDismissalFromContentContainer;
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController
           leftSidebarViewController:(UIViewController *)leftSidebarViewController;
@@ -67,6 +68,8 @@
 - (void)presentLeftSidebarViewControllerWithStyle:(SidebarTransitionStyle)transitionStyle;
 - (void)presentRightSidebarViewController;
 - (void)presentRightSidebarViewControllerWithStyle:(SidebarTransitionStyle)transitionStyle;
+
+- (void)setContentViewController:(UIViewController *)viewController shouldDismissSidebarViewController:(BOOL)dismissSidebar;
 
 @end
 
