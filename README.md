@@ -1,6 +1,6 @@
 # TheSidebarController
 
-<img src="https://raw2.github.com/jondanao/TheSidebarController/master/demo.gif">
+<img src="https://raw.githubusercontent.com/jondanao/TheSidebarController/master/demo.gif">
 
 TheSidebarController is a container view controller that manages 3 main view controllers namely - `contentViewController`, `leftSidebarController` and the `rightSidebarController`. Reveal the sidebar by calling either one of the following methods:
 
