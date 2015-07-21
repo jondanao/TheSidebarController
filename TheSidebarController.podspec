@@ -6,8 +6,8 @@ Pod::Spec.new do |s|
   s.screenshots  = 'https://raw2.github.com/jondanao/TheSidebarController/master/demo.gif'
   s.license      = 'MIT'
   s.author       = { 'Jon Danao' => "jondanao@gmail.com" }
-  s.source       = { :git => 'https://github.com/jondanao/TheSidebarController.git', 
-                     :tag => '0.7' }
+  s.source       = { :git => 'https://github.com/Lolloz89/TheSidebarController.git', 
+                     :tag => ‘0.8’ }
 
   s.platform     = :ios, '7.0'
   s.requires_arc = true
