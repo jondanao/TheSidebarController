@@ -34,13 +34,18 @@
     
     // Animation settings for content view
     CATransform3D contentTransform = CATransform3DIdentity;
-    contentTransform.m34 = -1.0f / 800.0f;
+    contentTransform.m34 = -1.0f / 600.0f;
     contentView.layer.zPosition = 100;
     
     // Animation settings for menu view
     CATransform3D sidebarTransform = CATransform3DIdentity;
+    sidebarTransform.m34 = -1.0f / 1000.0f;
     sidebarTransform = CATransform3DScale(sidebarTransform, 1.7, 1.7, 1.7);
+    sidebarTransform = CATransform3DRotate(sidebarTransform, DEG2RAD(75), 0.0, 1.0, 0.0);
     sidebarView.layer.transform = sidebarTransform;
+    sidebarView.layer.anchorPoint = CGPointMake(1.5, 0.5);
+    sidebarView.layer.frame = CGRectMake(-sidebarView.layer.bounds.size.width/2, sidebarView.layer.bounds.origin.y, sidebarView.layer.bounds.size.width, sidebarView.layer.bounds.size.height);
+    sidebarView.layer.zPosition = -1000;
     
     sidebarTransform = CATransform3DIdentity;
     sidebarTransform = CATransform3DScale(sidebarTransform, 1.0, 1.0, 1.0);
@@ -76,6 +81,8 @@
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          sidebarView.layer.transform = sidebarTransform;
+                         sidebarView.layer.frame = CGRectMake(0, 0, sidebarView.layer.bounds.size.width, sidebarView.layer.bounds.size.height);
+                         sidebarView.layer.opacity = 1.0;
                      }
                      completion:nil];
 }
@@ -93,7 +100,10 @@
     
     // Animation settings for menu view
     __block CATransform3D sidebarTransform = CATransform3DIdentity;
+    sidebarTransform.m34 = -1.0f / 1000.0f;
+    sidebarView.layer.anchorPoint = CGPointMake(1.5, 0.5);
     sidebarTransform = CATransform3DScale(sidebarTransform, 1.7, 1.7, 1.7);
+    sidebarTransform = CATransform3DRotate(sidebarTransform, DEG2RAD(75), 0.0, 1.0, 0.0);
     
     
     // Animate content view
@@ -113,6 +123,8 @@
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          sidebarView.layer.transform = sidebarTransform;
+                         sidebarView.layer.frame = CGRectMake(-sidebarView.layer.bounds.size.width/2, sidebarView.layer.bounds.origin.y, sidebarView.layer.bounds.size.width, sidebarView.layer.bounds.size.height);
+                         sidebarView.layer.opacity = 0.0;
                      }
                      completion:^(BOOL finished) {
                          sidebarTransform = CATransform3DIdentity;
