@@ -36,9 +36,9 @@ This project is inspired by [RESideMenu](https://github.com/romaonthego/RESideMe
 
 Drag and drop `TheSidebarController` folder into your project. Add `#import "TheSidebarController.h"` to all view controllers that need to use it.
 
-### Cocoapods
+### CocoaPods
 
-Cocoapods is amazing. If you're still not using it, start now! This is the recommended approach to manage your dependencies. Learn from their official website: [http://guides.cocoapods.org/](http://guides.cocoapods.org/)
+CocoaPods is amazing. If you're still not using it, start now! This is the recommended approach to manage your dependencies. Learn from their official website: [http://guides.cocoapods.org/](http://guides.cocoapods.org/)
 
 In the project folder where .xcodeproj resides, **create a Podfile:**
 
