@@ -31,7 +31,8 @@
     @"SidebarLuvocracyAnimation", \
     @"SidebarFeedlyAnimation", \
     @"SidebarFlipboardAnimation", \
-    @"SidebarWunderlistAnimation"
+    @"SidebarWunderlistAnimation", \
+    @"SidebarDoorOpenAnimation"
 
 
 typedef NS_ENUM(NSInteger, SidebarTransitionStyle)
@@ -41,7 +42,8 @@ typedef NS_ENUM(NSInteger, SidebarTransitionStyle)
     SidebarTransitionStyleLuvocracy,
     SidebarTransitionStyleFeedly,
     SidebarTransitionStyleFlipboard,
-    SidebarTransitionStyleWunderlist
+    SidebarTransitionStyleWunderlist,
+    SidebarTransitionStyleDoorOpen
 };
 
 typedef NS_ENUM(NSInteger, Side)
